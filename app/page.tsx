@@ -9,6 +9,9 @@ import StatsChips from "@/components/StatsChips";
 import { motion } from "framer-motion";
 import Image from "next/image";
  
+export const dynamic = 'force-static';  // ← AGREGA ESTA LÍNEA
+
+
 export default function Home() {
 
   return (

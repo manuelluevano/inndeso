@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Esto hace que Next.js genere archivos estáticos
-  trailingSlash: true, // Importante para GitHub Pages
+  output: 'export',
+  trailingSlash: true,
   images: {
-    unoptimized: true // Necesario para export estático
+    unoptimized: true
   },
-  // basePath: '/inndeso' // DESCOMENTA ESTA LÍNEA SI TU REPOSITORIO SE LLAMA "inndeso"
+  basePath: '/inndeso',
+  assetPrefix: '/inndeso/',  // ← AGREGA ESTO
 }
 
 module.exports = nextConfig
