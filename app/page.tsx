@@ -1,5 +1,6 @@
 
 "use client";
+import { Suspense } from 'react';
 
 import Experiencia from "@/components/Experiencia";
 import PorQueInndeso from "@/components/PorQueInndeso";
@@ -12,6 +13,7 @@ export default function Home() {
 
   return (
     <>
+    <Suspense fallback={<div>Cargando...</div>}>
 
     <main id="inicio" className="relative ">
       
@@ -118,22 +120,20 @@ export default function Home() {
       </section>
     </main>
 
-      <section>
-        <Experiencia/>
-      </section>
+          <section>
+            <Experiencia/>
+          </section>
+        
+          <section>
+            <StatsChips/>
+          </section>
 
-
-
-
-    
-    <section>
-      <StatsChips/>
-    </section>
-
-      <section>
-        <PorQueInndeso/>
-      </section>
+          <section>
+            <PorQueInndeso/>
+          </section>
+    </Suspense>
           </>
+
 
   );
 }
