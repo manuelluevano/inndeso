@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out"
+    "deploy": "next build && next export && echo inndeso.com.mx > out/CNAME && touch out/.nojekyll && gh-pages -d out -b gh-pages"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
