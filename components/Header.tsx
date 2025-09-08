@@ -19,7 +19,7 @@ const Header = () => {
           <div className="w-auto mx-auto px-2 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
               {/* Logo + Marca */}
               <div className="flex items-center gap-2">
-                <img src="/logo.png" alt="INNDESO" className="h-40 w-40" />
+                <img src="/inndeso/logo.png" alt="INNDESO" className="h-40 w-40" />
               </div>
 
               {/* Nav */}
