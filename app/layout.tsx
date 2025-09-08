@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "INNDESO",
   description: "Inovacion y desarrollo de software.",
   icons: {
-    icon: "/inndeso/icono.png", // ruta desde /public
+    icon: "/icono.png", // ruta desde /public
   },
 };
 
