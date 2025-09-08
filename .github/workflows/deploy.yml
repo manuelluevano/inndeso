@@ -19,11 +19,10 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run build
-      - run: npm run export
+      - run: npm run build  # ¡SOLO ESTE! next export ya no se necesita
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./out  # Next.js crea esta carpeta automáticamente con output: 'export'
 
   deploy:
     environment:
