@@ -108,7 +108,7 @@ export default function Home() {
                 whileHover={{ scale: 1.03, rotate: -0.5 }}
                 >
                 <Image
-                  src="/hero.png"
+                  src="/inndeso/hero.png"
                   alt="Ilustración de desarrollo de software"
                   width={880}
                   height={660}
