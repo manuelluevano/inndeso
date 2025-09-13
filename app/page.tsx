@@ -12,7 +12,7 @@ import StatsChips from "@/components/StatsChips";
 export const dynamic = "force-static";
 
 const WHATSAPP_URL =
-  "https://wa.me/523312423096?text=Hola%20INNDESO%2C%20necesito%20un%20proyecto%20de%20desarrollo%20de%20software";
+  "https://wa.me/523315203120?text=Hola%20INNDESO%2C%20necesito%20un%20proyecto%20de%20desarrollo%20de%20software";
 
 export default function Home() {
   return (

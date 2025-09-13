@@ -113,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ],
               contactPoint: [{
                 '@type': 'ContactPoint',
-                telephone: '+52-33-1242-3096',
+                telephone: '+52-33-1520-3120',
                 contactType: 'customer support',
                 areaServed: 'MX',
                 availableLanguage: ['es']

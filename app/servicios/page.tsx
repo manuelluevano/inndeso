@@ -50,7 +50,7 @@ export default function Page() {
   }
 
   const WHATSAPP_URL =
-    'https://wa.me/523312423096?text=Hola%20INNDESO%2C%20quiero%20cotizar%20un%20proyecto%20de%20software'
+    'https://wa.me/523315203120?text=Hola%20INNDESO%2C%20quiero%20cotizar%20un%20proyecto%20de%20software'
 
   return (
     <main className="relative">

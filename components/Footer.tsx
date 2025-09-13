@@ -9,7 +9,7 @@ const Footer = () => {
     instagram: "https://www.instagram.com/tu_usuario",
     tiktok: "https://www.tiktok.com/@tu_usuario",
     whatsapp:
-      "https://wa.me/523312423096?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n",
+      "https://wa.me/523315203120?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n",
   };
 
   return (

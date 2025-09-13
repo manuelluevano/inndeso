@@ -25,7 +25,7 @@ const Header = () => {
     instagram: "https://www.instagram.com/inndeso_mx",
     tiktok: "https://www.tiktok.com/@inndeso",       
     whatsapp:
-      "https://wa.me/523312423096?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20desarrollo%20de%20software",
+      "https://wa.me/523315203120?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20desarrollo%20de%20software",
   };
 
   return (

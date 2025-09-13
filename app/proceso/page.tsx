@@ -35,7 +35,7 @@ export default function Page() {
   // FAQ removido por solicitud
 
   const WHATSAPP_URL =
-    'https://wa.me/523312423096?text=Hola%20INNDESO%2C%20quiero%20conocer%20su%20proceso%20de%20trabajo'
+    'https://wa.me/523315203120?text=Hola%20INNDESO%2C%20quiero%20conocer%20su%20proceso%20de%20trabajo'
 
   return (
     <main className="relative">
