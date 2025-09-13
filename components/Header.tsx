@@ -1,132 +1,167 @@
 "use client";
 
-import React, { useState } from 'react'
+import Link from "next/link";
+import React, { useState } from "react";
+
+const SocialLink = ({ href, label, children, className = "" }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={label}
+    className={`inline-flex items-center justify-center p-2 rounded-full hover:bg-gray-100 transition-colors ${className}`}
+  >
+    {children}
+  </a>
+);
 
 const Header = () => {
-
-
-  //HOOK PARA ABRIR Y CERRAR EL MENU DE HAMBURGUESA
   const [openMenu, setOpenMenu] = useState(false);
+  const toggleMenu = () => setOpenMenu((v) => !v);
 
-  const toggleMenu = () => {
-    setOpenMenu(!openMenu);
+  // 🔗 Coloca aquí tus URLs reales
+  const social = {
+    facebook: "https://www.facebook.com/profile.php?id=61578554534142",
+    instagram: "https://www.instagram.com/inndeso_mx",
+    tiktok: "https://www.tiktok.com/@inndeso",       
+    whatsapp:
+      "https://wa.me/523312423096?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20desarrollo%20de%20software",
   };
 
   return (
     <>
-     <header className="top-0 shadow-sm z-50 bg-white">
-
-          <div className="w-auto mx-auto px-2 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-              {/* Logo + Marca */}
-              <div className="flex items-center gap-2">
-                <img src="/logo.png" alt="INNDESO" className="h-40 w-40" />
-              </div>
-
-              {/* Nav */}
-              <nav className="hidden md:flex items-center gap-8 text-sm">
-                <a href="#" className="text-slate-800 hover:text-blue-600 hover:underline underline-offset-4">Inicio</a>
-                <a href="#" className="text-slate-900 hover:text-blue-600 hover:underline underline-offset-4">Portfolio</a>
-                <a href="#" className="text-slate-700 hover:text-blue-600 hover:underline underline-offset-4">Acerca de nosotros</a>
-                <a href="#" className="text-slate-950 hover:text-blue-600 hover:underline underline-offset-4">Testimonios</a>
-                
-              </nav>
-
-                {/* REDES SOCIALES */}
-              <div className=" hidden md:flex gap-5"> 
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#1877f2]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                    <path
-                      d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#c13584]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-
-                    <path
-                      d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#6a76ac]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 448 512">
-                    <path
-                      d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#128c7e]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 448 512">
-                    <path
-                      d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
-                  </svg>
-                </span>
-              </div>
-
-              {/* <!-- Botón hamburguesa (solo visible en móvil) --> */}
-            <button className="md:hidden focus:outline-none"  onClick={toggleMenu}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            </button>
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b border-neutral-200/60">
+        <div className="w-auto mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          {/* Logo + Marca */}
+          <div className="flex items-center gap-2">
+            {/* Si usas next/image, cámbialo por <Image /> */}
+            <img src="/logo.png" alt="INNDESO" className="h-32 w-auto" />
           </div>
-        </header>
 
-         {/* Menú móvil (oculto por defecto) */}
-      <div className={`md:hidden bg-white fixed inset-0 z-40 shadow-lg transition-all duration-300 ease-in-out ${openMenu ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="container mx-auto px-4 py-4 h-full flex flex-col justify-center items-center">
+          {/* Nav */}
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <Link href="/" className="text-neutral-800 hover:text-blue-600 hover:underline underline-offset-4">
+              Inicio
+            </Link>
+            <Link href="/servicios" className="text-neutral-900 hover:text-blue-600 hover:underline underline-offset-4">
+              Servicios
+            </Link>
+            <Link href="/proyectos" className="text-neutral-700 hover:text-blue-600 hover:underline underline-offset-4">
+              Proyectos
+            </Link>
+            <Link href="/proceso" className="text-neutral-950 hover:text-blue-600 hover:underline underline-offset-4">
+              Proceso
+            </Link>
+          </nav>
+
+          {/* Redes sociales + CTA (desktop) */}
+          <div className="hidden md:flex items-center gap-3">
+            <SocialLink href={social.facebook} label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="h-7 w-7 fill-[#1877f2]">
+                <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.instagram} label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 stroke-[#c13584]">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="12" r="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="#c13584" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.tiktok} label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-7 w-7 fill-[#6a76ac]">
+                <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.whatsapp} label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 fill-[#25D366]">
+                <path d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.4 0 .05 5.35.05 11.97c0 2.11.55 4.17 1.6 5.98L0 24l6.22-1.63a11.9 11.9 0 0 0 5.82 1.49h.01c6.63 0 12.01-5.35 12.02-11.97 0-3.2-1.25-6.22-3.53-8.4zM12.04 22a9.9 9.9 0 0 1-5.06-1.38l-.36-.2-3.69.96.99-3.6-.23-.37A10 10 0 1 1 22.05 12c-.01 5.52-4.53 9.99-10.01 10zM17.55 14.3c-.27-.13-1.58-.78-1.83-.86-.24-.08-.42-.12-.6.13-.18.26-.69.85-.84 1.02-.15.16-.31.19-.57.06-1.55-.77-2.56-1.38-3.56-3.13-.27-.47.27-.44.77-1.47.08-.16.04-.3-.02-.42-.06-.12-.6-1.45-.82-1.98-.22-.53-.44-.46-.6-.47-.15-.01-.32-.01-.49-.01-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.64c.13.16 1.81 2.77 4.38 3.88.61.26 1.09.41 1.46.53.62.2 1.19.17 1.64.1.5-.07 1.58-.65 1.8-1.28.22-.63.22-1.16.15-1.27-.06-.11-.22-.18-.49-.3z" />
+              </svg>
+            </SocialLink>
+
+            <a
+              href={social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:from-blue-500 hover:to-indigo-500 transition"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5 fill-[#25D366]">
+                <path d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.4 0 .05 5.35.05 11.97c0 2.11.55 4.17 1.6 5.98L0 24l6.22-1.63a11.9 11.9 0 0 0 5.82 1.49h.01c6.63 0 12.01-5.35 12.02-11.97 0-3.2-1.25-6.22-3.53-8.4zM12.04 22a9.9 9.9 0 0 1-5.06-1.38l-.36-.2-3.69.96.99-3.6-.23-.37A10 10 0 1 1 22.05 12c-.01 5.52-4.53 9.99-10.01 10zM17.55 14.3c-.27-.13-1.58-.78-1.83-.86-.24-.08-.42-.12-.6.13-.18.26-.69.85-.84 1.02-.15.16-.31.19-.57.06-1.55-.77-2.56-1.38-3.56-3.13-.27-.47.27-.44.77-1.47.08-.16.04-.3-.02-.42-.06-.12-.6-1.45-.82-1.98-.22-.53-.44-.46-.6-.47-.15-.01-.32-.01-.49-.01-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.64c.13.16 1.81 2.77 4.38 3.88.61.26 1.09.41 1.46.53.62.2 1.19.17 1.64.1.5-.07 1.58-.65 1.8-1.28.22-.63.22-1.16.15-1.27-.06-.11-.22-.18-.49-.3z" />
+              </svg>
+              Contáctanos
+            </a>
+          </div>
+
+          {/* Botón hamburguesa (solo móvil) */}
+          <button className="md:hidden focus:outline-none" onClick={toggleMenu} aria-label="Abrir menú">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      {/* Menú móvil */}
+      <div
+        className={`md:hidden bg-white fixed inset-0 z-40 shadow-lg transition-all duration-300 ease-in-out ${
+          openMenu ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <div className="mx-auto px-4 py-4 h-full flex flex-col justify-center items-center relative">
           <button className="absolute top-4 right-4 p-2" onClick={toggleMenu} aria-label="Cerrar menú">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          
-          <a href="#" className="block py-3 px-4 text-slate-800 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>Inicio</a>
-          <a href="#" className="block py-3 px-4 text-slate-900 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>Portfolio</a>
-          <a href="#" className="block py-3 px-4 text-slate-700 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>Acerca de nosotros</a>
-          <a href="#" className="block py-3 px-4 text-slate-950 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>Testimonios</a>
-          
-          {/* Redes sociales para móvil */}
-          <div className="flex justify-center gap-5 py-6 mt-8">
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#1877f2]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                    <path
-                      d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#c13584]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 
-                    <path
-                      d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#6a76ac]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 448 512">
-                    <path
-                      d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
-                  </svg>
-                </span>
-                <span className="[&>svg]:h-7 [&>svg]:w-7 [&>svg]:fill-[#128c7e]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 448 512">
-                    <path
-                      d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
-                  </svg>
-                </span>
-              </div>
+          <Link href="/" className="block py-3 px-4 text-slate-800 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>
+            Inicio
+          </Link>
+          <Link href="/servicios" className="block py-3 px-4 text-slate-900 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>
+            Servicios
+          </Link>
+          <Link href="/proyectos" className="block py-3 px-4 text-slate-700 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>
+            Proyectos
+          </Link>
+          <Link href="/proceso" className="block py-3 px-4 text-slate-950 hover:bg-gray-100 rounded-md transition duration-300 w-full text-center text-lg font-medium" onClick={toggleMenu}>
+            Proceso
+          </Link>
+
+          {/* Redes sociales (móvil) */}
+          <div className="flex gap-4 mt-6">
+            <SocialLink href={social.facebook} label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="h-7 w-7 fill-[#1877f2]">
+                <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.instagram} label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 stroke-[#c13584]">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="12" r="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="#c13584" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.tiktok} label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-7 w-7 fill-[#6a76ac]">
+                <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+              </svg>
+            </SocialLink>
+
+            <SocialLink href={social.whatsapp} label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-7 w-7 fill-[#25D366]">
+                <path d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.4 0 .05 5.35.05 11.97c0 2.11.55 4.17 1.6 5.98L0 24l6.22-1.63a11.9 11.9 0 0 0 5.82 1.49h.01c6.63 0 12.01-5.35 12.02-11.97 0-3.2-1.25-6.22-3.53-8.4zM12.04 22a9.9 9.9 0 0 1-5.06-1.38l-.36-.2-3.69.96.99-3.6-.23-.37A10 10 0 1 1 22.05 12c-.01 5.52-4.53 9.99-10.01 10zM17.55 14.3c-.27-.13-1.58-.78-1.83-.86-.24-.08-.42-.12-.6.13-.18.26-.69.85-.84 1.02-.15.16-.31.19-.57.06-1.55-.77-2.56-1.38-3.56-3.13-.27-.47.27-.44.77-1.47.08-.16.04-.3-.02-.42-.06-.12-.6-1.45-.82-1.98-.22-.53-.44-.46-.6-.47-.15-.01-.32-.01-.49-.01-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.64c.13.16 1.81 2.77 4.38 3.88.61.26 1.09.41 1.46.53.62.2 1.19.17 1.64.1.5-.07 1.58-.65 1.8-1.28.22-.63.22-1.16.15-1.27-.06-.11-.22-.18-.49-.3z" />
+              </svg>
+            </SocialLink>
           </div>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
