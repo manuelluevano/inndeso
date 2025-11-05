@@ -217,9 +217,9 @@ const SERVICES: ServiceCard[] = [
 
 const PACKAGES: PackageOption[] = [
   {
-    name: "Lanzamiento web",
+    name: "Página web",
     price: "Desde $3,500 MXN",
-    time: "3 semanas",
+    time: "1 semana",
     idealFor: "Negocios que necesitan anunciarse de inmediato",
     includes: ["Landing page con copy y diseño", "Integración de formularios y analítica", "Entrega lista para anunciar"],
   },
@@ -227,7 +227,7 @@ const PACKAGES: PackageOption[] = [
     name: "Tienda con automatizaciones",
     previousPrice: "Antes $8,000 MXN",
     price: "Desde $7,500 MXN",
-    time: "5 semanas",
+    time: "3 semanas",
     idealFor: "Emprendimientos que venden en línea y quieren automatizar pagos",
     includes: ["Catálogo administrable", "Pagos y logística integrados", "Sincronización con inventario y facturación"],
     featured: true,
@@ -266,7 +266,7 @@ const TESTIMONIALS: Testimonial[] = [
 const FAQS: FAQ[] = [
   {
     q: "¿Cuál es el tiempo típico de entrega?",
-    a: "Los proyectos web toman 3 a 5 semanas. Sistemas internos o apps móviles de 6 a 10 semanas según el alcance acordado.",
+    a: "Los proyectos web toman 1 a 5 semanas. Sistemas internos o apps móviles de 6 a 10 semanas según el alcance acordado.",
   },
   {
     q: "¿Qué incluye el presupuesto?",
@@ -710,7 +710,7 @@ export default function Home() {
                   <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
                     Garantía
                   </span>
-                  <h3 className="mt-4 text-2xl font-bold text-neutral-900">Tu inversión segura desde el primer sprint</h3>
+                  <h3 className="mt-4 text-2xl font-bold text-neutral-900">Tu inversión segura desde la primera semana</h3>
                   <p className="mt-3 text-sm text-neutral-600">
                     Trabajamos por etapas cortas y medibles. Si algo no avanza como esperabas, ajustamos en la siguiente semana sin costo adicional.
                   </p>
@@ -719,7 +719,7 @@ export default function Home() {
                   {[
                     {
                       title: "Revisión semanal",
-                      desc: "Demo navegable cada 7 días para validar diseño y desarrollo.",
+                      desc: "Demo navegable para validar diseño y desarrollo.",
                     },
                     {
                       title: "Soporte incluido",

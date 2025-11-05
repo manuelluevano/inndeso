@@ -6,8 +6,6 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const social = {
     facebook: "https://www.facebook.com/profile.php?id=61578554534142",
-    instagram: "https://www.instagram.com/inndeso_mx",
-    tiktok: "https://www.tiktok.com/@inndeso",
     whatsapp: "https://wa.me/523312050703?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n",
   };
 
@@ -67,18 +65,6 @@ const Footer = () => {
               <a href={social.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="h-6 w-6 fill-[#1877f2]">
                   <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-                </svg>
-              </a>
-              <a href={social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 stroke-[#c13584]">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="12" cy="12" r="5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="17.5" cy="6.5" r="1.5" fill="#c13584" />
-                </svg>
-              </a>
-              <a href={social.tiktok} aria-label="TikTok" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="h-6 w-6 fill-[#6a76ac]">
-                  <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
                 </svg>
               </a>
               <a href={social.whatsapp} aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-white/5 transition">

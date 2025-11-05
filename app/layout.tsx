@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://inndeso.com.mx";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
@@ -109,21 +110,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         )}
-        {GA_MEASUREMENT_ID && (
+        {(GA_MEASUREMENT_ID || GOOGLE_ADS_ID) && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID ?? GOOGLE_ADS_ID}`}
               strategy="afterInteractive"
             />
             <Script
-              id="ga-init"
+              id="gtag-init"
               strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
+                  ${GA_MEASUREMENT_ID ? `gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });` : ''}
+                  ${GOOGLE_ADS_ID ? `gtag('config', '${GOOGLE_ADS_ID}');` : ''}
                 `,
               }}
             />
@@ -140,13 +142,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: SITE_URL,
               logo: `${SITE_URL}/icono.png`,
               sameAs: [
-                'https://www.facebook.com/profile.php?id=61578554534142',
-                'https://www.instagram.com/inndeso_mx',
-                'https://www.tiktok.com/@inndeso'
+                'https://www.facebook.com/profile.php?id=61578554534142'
               ],
               contactPoint: [{
                 '@type': 'ContactPoint',
-                telephone: '+52-33-1520-3120',
+                telephone: '+52-33-1205-0703',
                 contactType: 'customer support',
                 areaServed: 'MX',
                 availableLanguage: ['es']
