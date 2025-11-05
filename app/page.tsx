@@ -1,7 +1,8 @@
 
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import type { KeyboardEvent } from "react";
+import type { ChangeEvent, FormEvent, KeyboardEvent, ReactNode } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -13,7 +14,8 @@ import StatsChips from "@/components/StatsChips";
 export const dynamic = "force-static";
 
 const WHATSAPP_URL =
-  "https://wa.me/523315203120?text=Hola%20INNDESO%2C%20necesito%20un%20proyecto%20de%20desarrollo%20de%20software";
+  "https://wa.me/523312050703?text=Hola%20INNDESO%2C%20necesito%20un%20proyecto%20de%20desarrollo%20de%20software";
+const WHATSAPP_BASE = "https://wa.me/523312050703";
 
 const POS_IMAGES = [
   "/portfolio/POS/Screenshot 2025-11-03 225959.png",
@@ -30,7 +32,7 @@ const POS_IMAGES = [
 ];
 
 const POS_DESCRIPTION =
-  "Suite de punto de venta que centraliza inventarios, ventas, usuarios y reportes de caja en tiempo real, pensada para operar sucursales físicas con procesos ágiles y seguros.";
+  "Suite de punto de venta que centraliza inventarios, usuarios, cajas y reportes en tiempo real para operar sucursales con procesos ágiles y seguros.";
 
 const APP_POLLOS_IMAGES = [
   "/portfolio/APP-POLLOS/app-polleria-cover.jpeg",
@@ -43,20 +45,20 @@ const APP_POLLOS_IMAGES = [
 ];
 
 const APP_POLLOS_DESCRIPTION =
-  "App móvil diseñada para iOS y Android con arquitectura multirrol: clientes compran productos y gestionan pedidos, repartidores organizan rutas de entrega y almacén controla existencias en tiempo real.";
+  "App móvil para iOS y Android con roles de cliente, repartidor y almacén. Permite comprar, coordinar entregas y controlar inventario en tiempo real.";
 
 const APP_POLLOS_ROLES = [
   {
     label: "Cliente",
-    detail: "Navega catálogo, arma pedidos, paga con pasarelas locales y rastrea entregas desde la app.",
+    detail: "Explora catálogo actualizable, arma pedidos, paga en línea y da seguimiento a las entregas.",
   },
   {
     label: "Repartidor",
-    detail: "Recibe órdenes priorizadas, marca estados de entrega y obtiene navegación asistida.",
+    detail: "Recibe rutas optimizadas, marca estados de entrega y descarga recibos.",
   },
   {
     label: "Almacén",
-    detail: "Controla stock, genera alertas de merma y sincroniza inventario con el punto de venta físico.",
+    detail: "Gestiona existencias, registra merma y sincroniza inventario con el punto de venta físico.",
   },
 ];
 
@@ -71,31 +73,337 @@ const ECOM_SERCOMIN_IMAGES = [
 ];
 
 const ECOM_SERCOMIN_DESCRIPTION =
-  "Plataforma de comercio electrónico con panel administrativo para controlar ventas, catálogo, entradas y salidas de inventario, catálogos mayoristas y conciliación de pagos.";
+  "Plataforma de comercio electrónico B2B con catálogo administrable, gestión de pedidos, conciliación de pagos y reportes en tiempo real.";
 
 const ECOM_SERCOMIN_FEATURES = [
+  { label: "Ventas", detail: "Checkout optimizado, historial y facturación automática por cliente." },
+  { label: "Inventario", detail: "Control de existencias por almacén con alertas y registro de movimientos." },
+  { label: "Pagos", detail: "Integración con pasarela nacional y conciliación bancaria con split por sucursal." },
+];
+
+const ADMIN_LOCAL_IMAGES = [
+  "/portfolio/ADMINISTRACION-LOCAL/admin-local-1.png",
+  "/portfolio/ADMINISTRACION-LOCAL/admin-local-2.png",
+  "/portfolio/ADMINISTRACION-LOCAL/admin-local-3.png",
+  "/portfolio/ADMINISTRACION-LOCAL/admin-local-4.png",
+  "/portfolio/ADMINISTRACION-LOCAL/admin-local-5.png",
+];
+
+const ADMIN_LOCAL_DESCRIPTION =
+  "Suite administrativa para servicios locales que centraliza ventas, órdenes de trabajo, inventario y cobros en un panel usable para todo el equipo.";
+
+const ADMIN_LOCAL_FEATURES = [
+  { label: "Ventas", detail: "Tickets rápidos, control de cobranzas y reportes diarios por sucursal." },
+  { label: "Servicios", detail: "Historial del cliente, estados del servicio y notificaciones internas." },
+  { label: "Inventario", detail: "Entradas, salidas y alertas de stock crítico sincronizadas con proveedores." },
+];
+
+const FASHION_LANDING_IMAGES = [
+  "/portfolio/eccomerce1/lookbook-1.jpg",
+  "/portfolio/eccomerce1/lookbook-2.jpg",
+  "/portfolio/eccomerce1/lookbook-3.jpg",
+];
+
+const FASHION_LANDING_DESCRIPTION =
+  "Landing page de ecommerce para marca de moda con catálogo editorial, carrusel de colecciones y llamados a la acción conectados a CRM.";
+
+const FASHION_LANDING_FEATURES = [
+  { label: "Catálogo", detail: "Colección por temporadas con carruseles y vitrinas destacadas." },
+  { label: "Conversiones", detail: "Formularios de venta conectados a HubSpot y pixel de Meta configurado." },
+  { label: "SEO", detail: "Contenido optimizado para búsquedas de moda y blog integrado." },
+];
+
+const BEAUTY_LANDING_IMAGES = [
+  "/portfolio/eccomerce2/beauty-1.jpg",
+  "/portfolio/eccomerce2/beauty-2.jpg",
+];
+
+const BEAUTY_LANDING_DESCRIPTION =
+  "Landing page de productos de belleza con secciones de beneficios, testimonios, comparativo de planes y checkout enlazado a tienda Shopify.";
+
+const BEAUTY_LANDING_FEATURES = [
+  { label: "Storytelling", detail: "Sección hero con video, ingredientes destacados y storytelling de marca." },
+  { label: "Social proof", detail: "Testimonios, métricas sociales y preguntas frecuentes integradas." },
+  { label: "Conversiones", detail: "Botón de compra directa a Shopify y automatización de email marketing." },
+];
+
+type ModalKey =
+  | "POS"
+  | "APP_POLLOS"
+  | "ECOM_SERCOMIN"
+  | "ADMIN_LOCAL"
+  | "FASHION_LANDING"
+  | "BEAUTY_LANDING";
+type LeadField = "name" | "email" | "need";
+
+type ServiceCard = {
+  title: string;
+  desc: string;
+  icon: ReactNode;
+  highlights?: string[];
+  href?: string;
+};
+
+type PackageOption = {
+  name: string;
+  price: string;
+  time: string;
+  includes: string[];
+  previousPrice?: string;
+  idealFor: string;
+  featured?: boolean;
+};
+
+type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+};
+
+type FAQ = {
+  q: string;
+  a: string;
+};
+
+type PortfolioProject = {
+  title: string;
+  tags: string[];
+  img: string;
+  modalKey?: ModalKey;
+  result?: string;
+  badge?: string;
+};
+
+const SERVICES: ServiceCard[] = [
   {
-    label: "Ventas",
-    detail: "Checkout optimizado, historial de pedidos y facturación automática con reportes diarios.",
+    title: "Páginas web y tiendas en línea",
+    desc: "Landing pages, catálogos y tiendas administrables diseñadas para convertir visitas en ventas.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M3 4h18v2H3zm0 6h18v2H3zm0 6h12v2H3z"/></svg>
+    ),
+    href: "/servicios/paginas-web",
+    highlights: [
+      "Rediseño web corporativo con copy enfocado en ventas",
+      "Tienda en línea con pagos y envíos listos para operar",
+      "Reportes y formularios conectados a tu correo o CRM",
+    ],
   },
   {
-    label: "Inventario",
-    detail: "Control de existencias por almacén, registro de entradas/salidas y alertas de reabasto.",
+    title: "Automatización de procesos",
+    desc: "Conectamos punto de venta, inventario y facturación para que la información se actualice sola.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M10 3H3v7h7zm11 0h-7v7h7zM10 14H3v7h7zm11 0h-7v7h7z"/></svg>
+    ),
+    highlights: [
+      "Inventario sincronizado entre tienda, almacén y contabilidad",
+      "Facturas y recibos generados automáticamente al cerrar una venta",
+      "Notificaciones a clientes y equipo en WhatsApp o email",
+    ],
   },
   {
-    label: "Pagos",
-    detail: "Integración con pasarela nacional, conciliación bancaria y split de comisiones para sucursales.",
+    title: "Sistemas internos a la medida",
+    desc: "Digitalizamos ventas, servicios e inventario para que tu equipo deje atrás las hojas de cálculo.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M4 4h16v2H4zm0 6h16v2H4zm0 6h16v2H4z"/></svg>
+    ),
+    href: "/servicios/tienda-en-linea",
+    highlights: [
+      "Control de pedidos, entregas y almacén en un solo panel",
+      "Panel de métricas en tiempo real listo para tus gerentes",
+      "Roles y permisos para cada área con historial de cambios",
+    ],
   },
 ];
 
-type ModalKey = "POS" | "APP_POLLOS" | "ECOM_SERCOMIN";
+const PACKAGES: PackageOption[] = [
+  {
+    name: "Lanzamiento web",
+    price: "Desde $3,500 MXN",
+    time: "3 semanas",
+    idealFor: "Negocios que necesitan anunciarse de inmediato",
+    includes: ["Landing page con copy y diseño", "Integración de formularios y analítica", "Entrega lista para anunciar"],
+  },
+  {
+    name: "Tienda con automatizaciones",
+    previousPrice: "Antes $8,000 MXN",
+    price: "Desde $7,500 MXN",
+    time: "5 semanas",
+    idealFor: "Emprendimientos que venden en línea y quieren automatizar pagos",
+    includes: ["Catálogo administrable", "Pagos y logística integrados", "Sincronización con inventario y facturación"],
+    featured: true,
+  },
+  {
+    name: "Sistema administrativo a la medida",
+    price: "Cotización personalizada",
+    time: "6-8 semanas",
+    idealFor: "Operaciones con múltiples sucursales o equipos que usan hojas de cálculo",
+    includes: [
+      "Pantallas para ventas, inventario y almacén",
+      "Reportes diarios listos para compartir",
+      "Acompañamiento mensual para resolver dudas",
+    ],
+  },
+];
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: "Pasamos de cotizaciones manuales a pedidos automatizados y aumentamos 32% las ventas B2B.",
+    name: "María López",
+    role: "Directora Comercial, SERCOMIN",
+  },
+  {
+    quote: "Ahora sabemos quién atiende cada servicio y qué materiales se usan. Eliminamos las hojas de cálculo.",
+    name: "Jorge Martínez",
+    role: "Gerente Operativo, Servicio Local",
+  },
+  {
+    quote: "La app móvil organizó pedidos, entregas y almacén. Los repartidores tienen rutas claras y trazabilidad completa.",
+    name: "Laura García",
+    role: "Fundadora, Pollería Express",
+  },
+];
+
+const FAQS: FAQ[] = [
+  {
+    q: "¿Cuál es el tiempo típico de entrega?",
+    a: "Los proyectos web toman 3 a 5 semanas. Sistemas internos o apps móviles de 6 a 10 semanas según el alcance acordado.",
+  },
+  {
+    q: "¿Qué incluye el presupuesto?",
+    a: "Incluye descubrimiento, diseño UI/UX, desarrollo, QA, despliegue y capacitación para tu equipo.",
+  },
+  {
+    q: "¿Dan soporte después del lanzamiento?",
+    a: "Sí, ofrecemos planes de soporte mensual para mejoras y monitoreo, o trabajamos bajo demanda.",
+  },
+  {
+    q: "¿Cómo se realiza el pago?",
+    a: "Solicitamos 40% para agendar, 30% al entregar el avance navegable y 30% al concluir. Podemos ajustar a tus políticas.",
+  },
+];
+
+const PORTFOLIO_PROJECTS: PortfolioProject[] = [
+  {
+    title: "E-commerce con gestión integral",
+    tags: ["Next.js", "NestJS", "Stripe"],
+    img: "/portfolio/ECCOMERCE-SERCOMIN/ecommerce-sercomin-4.jpeg",
+    modalKey: "ECOM_SERCOMIN",
+    result: "+32% en ventas mayoristas durante los primeros dos meses",
+    badge: "Caso destacado",
+  },
+  {
+    title: "App móvil multirrol",
+    tags: ["React Native", "FastAPI", "iOS", "Android"],
+    img: "/portfolio/APP-POLLOS/app-polleria-cover.jpeg",
+    modalKey: "APP_POLLOS",
+    result: "Pedidos organizados por rol con seguimiento en tiempo real",
+  },
+  {
+    title: "Sistema administrativo de servicios",
+    tags: ["Next.js", "NestJS", "PostgreSQL"],
+    img: "/portfolio/ADMINISTRACION-LOCAL/admin-local-1.png",
+    modalKey: "ADMIN_LOCAL",
+    result: "Control total de servicios y almacén en múltiples sucursales",
+  },
+  {
+    title: "E-commerce para boutique de moda",
+    tags: ["Next.js", "Tailwind", "Shopify"],
+    img: "/portfolio/eccomerce1/lookbook-1.jpg",
+    modalKey: "FASHION_LANDING",
+    result: "Generación de leads B2B con formularios conectados a HubSpot",
+  },
+  {
+    title: "E-commerce de cuidado personal",
+    tags: ["Next.js", "Marketing", "Shopify"],
+    img: "/portfolio/eccomerce2/beauty-1.jpg",
+    modalKey: "BEAUTY_LANDING",
+    result: "Página enfocada en captar demos con métricas sociales integradas",
+  },
+  {
+    title: "Punto de Venta Omnicanal",
+    tags: ["NestJS", "Auth", "Hardware"],
+    img: "/portfolio/POS/Screenshot 2025-11-03 230138.png",
+    modalKey: "POS",
+    result: "Inventarios y cajas unificados para sucursales físicas",
+  },
+];
+
+const SITE_URL = "https://inndeso.com.mx";
+
+const SERVICES_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Servicios de desarrollo de software",
+  itemListElement: SERVICES.map(({ title, desc, highlights }, index) => {
+    const serviceItem: Record<string, unknown> = {
+      "@type": "Service",
+      name: title,
+      description: desc,
+      areaServed: "MX",
+      availableLanguage: ["es"],
+      provider: {
+        "@type": "Organization",
+        name: "INNDESO",
+        url: SITE_URL,
+      },
+    };
+
+    if (highlights && highlights.length > 0) {
+      serviceItem.serviceOutput = highlights;
+    }
+
+    return {
+      "@type": "ListItem",
+      position: index + 1,
+      item: serviceItem,
+    };
+  }),
+};
+
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
+const HOMEPAGE_WEBPAGE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "INNDESO | Desarrollo de software y páginas web a la medida",
+  url: SITE_URL,
+  description:
+    "Desarrollo de páginas web, tiendas en línea, apps móviles y sistemas internos en México. Equipo senior que entrega rápido y con calidad.",
+  publisher: {
+    "@type": "Organization",
+    name: "INNDESO",
+    url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/icono.png`,
+    },
+  },
+  inLanguage: "es-MX",
+};
 
 export default function Home() {
   const [activeProjectModal, setActiveProjectModal] = useState<ModalKey | null>(null);
+  const [imagePreview, setImagePreview] = useState<{ src: string; alt: string } | null>(null);
+
   const closeModal = () => setActiveProjectModal(null);
+  const openModal = (modal: ModalKey) => setActiveProjectModal(modal);
+
+  const closePreview = () => setImagePreview(null);
+  const openPreview = (src: string, alt: string) => setImagePreview({ src, alt });
 
   useEffect(() => {
-    if (!activeProjectModal) {
+    if (!activeProjectModal && !imagePreview) {
       return;
     }
 
@@ -106,16 +414,23 @@ export default function Home() {
     return () => {
       style.overflow = previousOverflow;
     };
-  }, [activeProjectModal]);
+  }, [activeProjectModal, imagePreview]);
 
   const renderPhoneScreens = (images: string[], altPrefix: string) => (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
       {images.map((img, index) => (
         <div
           key={img}
-          className={`relative aspect-[9/16] w-full rounded-[32px] bg-neutral-950/80 shadow-xl shadow-neutral-900/40 ${
-            index === 0 ? "max-w-[180px] sm:max-w-[200px] p-4" : "max-w-[220px] sm:max-w-[240px] p-3"
-          }`}
+          role="button"
+          tabIndex={0}
+          onClick={() => openPreview(img, `${altPrefix} ${index + 1}`)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openPreview(img, `${altPrefix} ${index + 1}`);
+            }
+          }}
+          className="relative aspect-[9/16] w-full max-w-[220px] sm:max-w-[240px] cursor-zoom-in rounded-[32px] bg-neutral-950/80 p-3 shadow-xl shadow-neutral-900/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600"
         >
           <div className="relative h-full w-full overflow-hidden rounded-[24px] bg-neutral-50">
             <Image
@@ -123,7 +438,7 @@ export default function Home() {
               alt={`${altPrefix} ${index + 1}`}
               fill
               sizes="(min-width: 1280px) 18vw, (min-width: 768px) 30vw, 70vw"
-              className={index === 0 ? "object-contain" : "object-cover object-center"}
+              className="object-cover object-center"
               loading="lazy"
             />
           </div>
@@ -137,7 +452,16 @@ export default function Home() {
       {images.map((img, index) => (
         <div
           key={img}
-          className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100"
+          role="button"
+          tabIndex={0}
+          onClick={() => openPreview(img, `${altPrefix} ${index + 1}`)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openPreview(img, `${altPrefix} ${index + 1}`);
+            }
+          }}
+          className="relative aspect-[4/3] cursor-zoom-in overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
         >
           <Image
             src={img}
@@ -152,32 +476,26 @@ export default function Home() {
     </div>
   );
 
-  const portfolioProjects = [
-    {
-      title: "E-commerce con gestión integral",
-      tags: ["Next.js", "NestJS", "Stripe"],
-      img: "/portfolio/ECCOMERCE-SERCOMIN/ecommerce-sercomin-4.jpeg",
-      modalKey: "ECOM_SERCOMIN" as const,
-    },
-    {
-      title: "App móvil multirrol para pollería",
-      tags: ["React Native", "FastAPI", "iOS", "Android"],
-      img: "/portfolio/APP-POLLOS/app-polleria-cover.jpeg",
-      modalKey: "APP_POLLOS" as const,
-    },
-    { title: "Dashboard IoT", tags: ["React", "WebSockets"], img: "/portfolio/dashboard-iot.svg" },
-    { title: "E‑commerce B2B", tags: ["Next.js", "Stripe"], img: "/portfolio/ecommerce.svg" },
-    { title: "Integración CRM", tags: ["APIs", "Webhook"], img: "/portfolio/crm.svg" },
-    {
-      title: "PUNTO DE VENTA",
-      tags: ["NestJS", "Auth"],
-      img: "/portfolio/POS/Screenshot 2025-11-03 230138.png",
-      modalKey: "POS" as const,
-    },
-  ];
-
   return (
     <>
+      <Script
+        id="homepage-webpage-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOMEPAGE_WEBPAGE_JSON_LD) }}
+      />
+      <Script
+        id="homepage-services-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_JSON_LD) }}
+      />
+      <Script
+        id="homepage-faq-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
       <Suspense fallback={<div>Cargando...</div>}>
         <main id="inicio" className="relative">
           <RouteChangeTracker />
@@ -202,9 +520,21 @@ export default function Home() {
                   </h1>
 
                   <p className="mt-5 max-w-xl text-lg leading-relaxed text-neutral-800">
-                    Desde el concepto hasta el despliegue en producción: diseñamos, desarrollamos y
-                    mantenemos aplicaciones robustas, escalables y seguras.
+                    Diseñamos y desarrollamos páginas web, tiendas en línea y sistemas internos que generan ventas reales desde los primeros días.
                   </p>
+
+                  <ul className="mt-4 space-y-2 text-sm text-neutral-700">
+                    {[
+                      "Sitios listos para anunciar en menos de 4 semanas",
+                      "Automatizaciones que conectan tu punto de venta, inventario y facturación",
+                      "Equipo senior con soporte cercano y reportes claros",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-blue-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
 
                   <div className="mt-6 flex items-center gap-3">
                     <a
@@ -218,8 +548,11 @@ export default function Home() {
                       </svg>
                       Solicitar cotización
                     </a>
-                    <a href="#servicios" className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-6 py-3 text-sm sm:text-base font-semibold text-neutral-800 hover:bg-neutral-50 transition">
-                      Ver servicios
+                    <a
+                      href="#proyectos"
+                      className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 px-6 py-3 text-sm sm:text-base font-semibold text-neutral-800 hover:bg-neutral-50 transition"
+                    >
+                      Ver proyectos reales
                     </a>
                   </div>
 
@@ -234,6 +567,12 @@ export default function Home() {
                     </div>
                     <div className="inline-flex items-center gap-1 text-amber-600">
                       ★★★★★ <span className="text-neutral-600">Calificación de clientes</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-neutral-500">
+                      <span className="text-xs uppercase tracking-wide text-neutral-400">Han confiado en nosotros:</span>
+                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-600">
+                        SERCOMIN • Pollería Express • Servicios Locales
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -264,42 +603,258 @@ export default function Home() {
             </div>
           </section>
 
+          {/* CTA intermedia */}
+          <section className="relative py-12 sm:py-16">
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-blue-50 via-white to-blue-50" />
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="rounded-3xl border border-blue-100 bg-white shadow-lg shadow-blue-500/5 p-6 sm:p-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-neutral-900">¿Listo para impulsar tu proyecto?</h3>
+                  <p className="mt-2 text-neutral-600">
+                    Agenda una llamada gratuita de 20 minutos y te mostramos ejemplos y estimados reales para tu empresa.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  >
+                    Agenda una llamada gratis
+                  </a>
+                  <a
+                    href="mailto:hola@inndeso.com.mx"
+                    className="inline-flex items-center justify-center rounded-xl border border-blue-200 px-6 py-3 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
+                  >
+                    Enviar correo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Paquetes */}
+          <section className="bg-neutral-50 py-16 sm:py-20 border-t border-neutral-200/60">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Opciones pensadas para avanzar rápido</h2>
+                <p className="mt-3 text-neutral-600">
+                  Paquetes base que ajustamos a tu industria. Incluyen descubrimiento, diseño, desarrollo, QA y lanzamiento.
+                </p>
+              </div>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {PACKAGES.map((pkg) => {
+                  const quoteLink = `${WHATSAPP_BASE}?text=${encodeURIComponent(`Hola INNDESO, me interesa el paquete ${pkg.name}.`)}`;
+                  return (
+                    <div
+                      key={pkg.name}
+                      className={`group rounded-3xl border bg-white/85 p-6 shadow-sm backdrop-blur transition hover:shadow-xl ${
+                        pkg.featured ? "border-blue-200 shadow-blue-200/40" : "border-neutral-200"
+                      }`}
+                    >
+                      {pkg.featured && (
+                        <span className="inline-flex items-center rounded-full bg-blue-600/10 px-3 py-1 text-xs font-semibold text-blue-700">
+                          Más solicitado
+                        </span>
+                      )}
+                      <h3 className="mt-3 text-xl font-semibold text-neutral-900">{pkg.name}</h3>
+                      <p className="mt-2 text-sm text-neutral-500">{pkg.idealFor}</p>
+                      <div className="mt-4 flex items-baseline gap-2">
+                        {pkg.previousPrice && (
+                          <p className="text-sm font-semibold text-neutral-400 line-through">{pkg.previousPrice}</p>
+                        )}
+                        <p className="text-lg font-semibold text-blue-600">{pkg.price}</p>
+                        <span className="text-xs uppercase tracking-wide text-neutral-400">Entrega estimada: {pkg.time}</span>
+                      </div>
+                      <ul className="mt-4 space-y-2 text-sm text-neutral-700">
+                        {pkg.includes.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <svg className="mt-1 h-4 w-4 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7" />
+                            </svg>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-6 flex flex-col gap-2">
+                        <a
+                          href={quoteLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                        >
+                          Cotizar este plan
+                        </a>
+                        <a
+                          href={WHATSAPP_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-xl border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50"
+                        >
+                          Hablar con un asesor
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* Confianza */}
+          <section className="py-14 sm:py-20">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl border border-neutral-200 bg-white/80 shadow-sm backdrop-blur">
+              <div className="grid gap-8 lg:grid-cols-[2fr,3fr] items-center p-8 sm:p-10">
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                    Garantía
+                  </span>
+                  <h3 className="mt-4 text-2xl font-bold text-neutral-900">Tu inversión segura desde el primer sprint</h3>
+                  <p className="mt-3 text-sm text-neutral-600">
+                    Trabajamos por etapas cortas y medibles. Si algo no avanza como esperabas, ajustamos en la siguiente semana sin costo adicional.
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    {
+                      title: "Revisión semanal",
+                      desc: "Demo navegable cada 7 días para validar diseño y desarrollo.",
+                    },
+                    {
+                      title: "Soporte incluido",
+                      desc: "30 días posteriores al lanzamiento para ajustes y dudas.",
+                    },
+                    {
+                      title: "Propiedad total",
+                      desc: "Código, infraestructura y accesos quedan a tu nombre.",
+                    },
+                    {
+                      title: "KPIs claros",
+                      desc: "Tablero con métricas y entregables para tu dirección.",
+                    },
+                  ].map((item) => (
+                    <article key={item.title} className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                      <h4 className="font-semibold text-neutral-900">{item.title}</h4>
+                      <p className="mt-2 text-sm text-neutral-600">{item.desc}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonios */}
+          <section className="bg-white py-16 sm:py-20 border-t border-neutral-200/60">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Lo que dicen nuestros clientes</h2>
+                <p className="mt-3 text-neutral-600">Historias reales de empresas que confiaron en INNDESO para construir sus productos digitales.</p>
+              </div>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {TESTIMONIALS.map((testimonial) => {
+                  const initials = testimonial.name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase();
+                  return (
+                    <div key={testimonial.name} className="rounded-3xl border border-neutral-200 bg-neutral-50/80 p-6 shadow-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-600/10 text-sm font-semibold text-blue-700">
+                          {initials}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-neutral-900">{testimonial.name}</p>
+                          <p className="text-xs text-neutral-500">{testimonial.role}</p>
+                        </div>
+                      </div>
+                      <p className="mt-4 text-sm text-neutral-700">“{testimonial.quote}”</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* Preguntas frecuentes */}
+          <section id="faq" className="bg-neutral-50 py-16 sm:py-20 border-t border-neutral-200/60">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Preguntas frecuentes</h2>
+                <p className="mt-3 text-neutral-600">Resolvemos las dudas más comunes antes de iniciar un proyecto con nosotros.</p>
+              </div>
+              <div className="mt-8 space-y-6">
+                {FAQS.map((item) => (
+                  <div key={item.q} className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                    <h3 className="text-sm font-semibold text-neutral-900">{item.q}</h3>
+                    <p className="mt-2 text-sm text-neutral-600">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-white/90 p-5 text-sm text-neutral-700">
+                <div>
+                  ¿No ves tu pregunta aquí? Escríbenos y te respondemos en minutos.
+                </div>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                >
+                  Abrir WhatsApp
+                </a>
+              </div>
+            </div>
+          </section>
+
           {/* Servicios */}
           <section id="servicios" className="relative overflow-hidden bg-neutral-50 py-16 sm:py-20">
             <div className="pointer-events-none absolute inset-0 -z-10 bg-dots" />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Servicios</h2>
-              <p className="mt-2 text-neutral-600 max-w-2xl">Soluciones end‑to‑end para acelerar tu negocio.</p>
+              <p className="mt-2 text-neutral-600 max-w-2xl">Diseñamos sitios, tiendas en línea y plataformas internas que generan resultados desde el día uno.</p>
               <div className="mt-6 grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: "Aplicaciones Web",
-                    desc: "SPAs y backends escalables con arquitectura limpia y pruebas automatizadas.",
-                    icon: (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M3 4h18v2H3zm0 6h18v2H3zm0 6h12v2H3z"/></svg>
-                    ),
-                  },
-                  {
-                    title: "APIs e Integraciones",
-                    desc: "REST/GraphQL, microservicios y conectores con terceros de forma segura.",
-                    icon: (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M10 3H3v7h7zm11 0h-7v7h7zM10 14H3v7h7zm11 0h-7v7h7z"/></svg>
-                    ),
-                  },
-                  {
-                    title: "Cloud & DevOps",
-                    desc: "CI/CD, contenedores, monitoreo y despliegues confiables en la nube.",
-                    icon: (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-6 w-6 text-blue-600"><path fill="currentColor" d="M6 19a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4H6zm7-2.09V7h3l-4-4-4 4h3v9.91A4 4 0 1 0 13 16.9z"/></svg>
-                    ),
-                  },
-                ].map((b, i) => (
-                  <div key={i} className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+                {SERVICES.map((service) => (
+                  <div
+                    key={service.title}
+                    className="group rounded-3xl border border-neutral-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition hover:border-blue-200 hover:shadow-lg"
+                  >
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/10 mb-4">
-                      {b.icon}
+                      {service.icon}
                     </div>
-                    <h3 className="text-lg font-semibold">{b.title}</h3>
-                    <p className="mt-2 text-sm text-neutral-600">{b.desc}</p>
+                    <h3 className="text-lg font-semibold">{service.title}</h3>
+                    <p className="mt-2 text-sm text-neutral-600">{service.desc}</p>
+                    {service.highlights && (
+                      <ul className="mt-4 space-y-1 text-sm text-neutral-500">
+                        {service.highlights.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {service.href && (
+                      <a
+                        href={service.href}
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
+                      >
+                        Ver detalles del servicio
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path d="M5 12h14" />
+                          <path d="m12 5 7 7-7 7" />
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
@@ -319,24 +874,17 @@ export default function Home() {
               </div>
 
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {portfolioProjects.map((project, index) => {
+                {PORTFOLIO_PROJECTS.map((project, index) => {
                   const isInteractive = Boolean(project.modalKey);
                   const isPhoneProject = project.modalKey === "APP_POLLOS";
-
-                  const handleClick = () => {
-                    if (project.modalKey) {
-                      setActiveProjectModal(project.modalKey);
-                    }
-                  };
 
                   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
                     if (!project.modalKey) {
                       return;
                     }
-
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
-                      setActiveProjectModal(project.modalKey);
+                      openModal(project.modalKey);
                     }
                   };
 
@@ -345,9 +893,9 @@ export default function Home() {
                       key={project.title}
                       role={isInteractive ? "button" : undefined}
                       tabIndex={isInteractive ? 0 : undefined}
-                      onClick={isInteractive ? handleClick : undefined}
+                      onClick={isInteractive ? () => openModal(project.modalKey!) : undefined}
                       onKeyDown={isInteractive ? handleKeyDown : undefined}
-                      className={`group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm hover:shadow-md transition ${
+                      className={`group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white/85 shadow-sm backdrop-blur transition hover:border-blue-200 hover:shadow-lg ${
                         isInteractive ? "cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600" : ""
                       }`}
                       aria-label={isInteractive ? `Ver detalles de ${project.title}` : undefined}
@@ -356,9 +904,14 @@ export default function Home() {
                         className={`relative w-full overflow-hidden ${
                           isPhoneProject
                             ? "flex aspect-[3/2] items-center justify-center bg-neutral-900/5"
-                            : "aspect-[3/2]"
+                            : "aspect-[3/2] flex items-center justify-center bg-neutral-900/5"
                         }`}
                       >
+                        {project.badge && (
+                          <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-blue-600/10 px-3 py-1 text-xs font-semibold text-blue-700">
+                            {project.badge}
+                          </span>
+                        )}
                         {isPhoneProject ? (
                           <div className="relative aspect-[9/16] w-28 sm:w-32 rounded-[28px] bg-neutral-950/90 p-3 shadow-lg shadow-black/40 transition-transform duration-500 group-hover:scale-[1.02]">
                             <div className="absolute inset-x-4 top-2 mx-auto h-1.5 rounded-full bg-neutral-700" />
@@ -380,15 +933,18 @@ export default function Home() {
                             alt={project.title}
                             fill
                             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                            className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.03]"
                             priority={index < 2}
                           />
                         )}
                       </div>
                       <div className="p-5">
                         <h3 className="font-semibold">{project.title}</h3>
+                        {project.result && (
+                          <p className="mt-1 text-sm text-neutral-600">{project.result}</p>
+                        )}
                         <div className="mt-2 flex flex-wrap gap-2">
-                          {project.tags.map((tag: string) => (
+                          {project.tags.map((tag) => (
                             <span key={tag} className="text-xs rounded-full bg-neutral-100 px-2 py-1 text-neutral-700">
                               {tag}
                             </span>
@@ -398,28 +954,6 @@ export default function Home() {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          </section>
-
-          {/* Proceso */}
-          <section id="proceso" className="bg-neutral-50 py-16 sm:py-20 border-t border-neutral-200/60">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Nuestro proceso</h2>
-              <div className="mt-6 grid md:grid-cols-5 gap-4">
-                {[
-                  { n: "01", t: "Descubrimiento", d: "Objetivos, métricas y alcance." },
-                  { n: "02", t: "Diseño", d: "UX/UI y arquitectura técnica." },
-                  { n: "03", t: "Desarrollo", d: "Sprints ágiles y revisiones." },
-                  { n: "04", t: "QA", d: "Pruebas, seguridad y performance." },
-                  { n: "05", t: "Deploy", d: "Monitoreo y mejora continua." },
-                ].map((s, i) => (
-                  <div key={i} className="rounded-2xl border border-neutral-200 bg-white p-5">
-                    <div className="text-xs font-mono text-blue-600">{s.n}</div>
-                    <div className="mt-1 font-semibold">{s.t}</div>
-                    <div className="mt-1 text-sm text-neutral-600">{s.d}</div>
-                  </div>
-                ))}
               </div>
             </div>
           </section>
@@ -440,7 +974,7 @@ export default function Home() {
                   type="button"
                   onClick={closeModal}
                   className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
-                  aria-label="Cerrar modal del ecommerce"
+                  aria-label="Cerrar modal del e-commerce"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
                     <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
@@ -463,7 +997,157 @@ export default function Home() {
                   <div className="grid gap-3 rounded-2xl border border-indigo-100 bg-indigo-50/80 p-5 text-sm text-indigo-900">
                     {ECOM_SERCOMIN_FEATURES.map((feature) => (
                       <div key={feature.label} className="flex items-start gap-3">
-                        <span className="mt-1 inline-flex h-6 min-w-[84px] items-center justify-center rounded-full bg-indigo-600 px-2 text-xs font-semibold text-white">
+                        <span className="mt-1 inline-flex h-6 min-w-[90px] items-center justify-center rounded-full bg-indigo-600 px-2 text-xs font-semibold text-white">
+                          {feature.label}
+                        </span>
+                        <p>{feature.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-indigo-200 bg-white/80 p-5 text-sm text-indigo-900 shadow-sm">
+                    <div>
+                      <h4 className="text-sm font-semibold text-neutral-900">¿Quieres un e-commerce como este?</h4>
+                      <p className="mt-1 text-neutral-600">Agenda una consultoría gratuita y te mostramos el flujo completo adaptado a tu negocio.</p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <a
+                        href={WHATSAPP_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+                      >
+                        Agenda llamada
+                      </a>
+                      <button
+                        type="button"
+                        onClick={closeModal}
+                        className="inline-flex items-center justify-center rounded-xl border border-neutral-200 px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeProjectModal === "ADMIN_LOCAL" && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="admin-local-modal-title"
+              onClick={closeModal}
+            >
+              <div
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-600"
+                  aria-label="Cerrar modal del sistema administrativo"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
+                  </svg>
+                </button>
+
+                <div className="grid gap-6 px-6 py-8 sm:px-10 sm:py-10">
+                  <div>
+                    <span className="inline-flex items-center rounded-full bg-amber-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+                      Backoffice
+                    </span>
+                    <h3 id="admin-local-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
+                      Sistema administrativo de servicios
+                    </h3>
+                    <p className="mt-3 text-base text-neutral-600">{ADMIN_LOCAL_DESCRIPTION}</p>
+                  </div>
+
+                  {renderDesktopGallery(ADMIN_LOCAL_IMAGES, "Captura del sistema administrativo")}
+
+                  <div className="grid gap-3 rounded-2xl border border-amber-100 bg-amber-50/80 p-5 text-sm text-amber-900">
+                    {ADMIN_LOCAL_FEATURES.map((feature) => (
+                      <div key={feature.label} className="flex items-start gap-3">
+                        <span className="mt-1 inline-flex h-6 min-w-[90px] items-center justify-center rounded-full bg-amber-600 px-2 text-xs font-semibold text-white">
+                          {feature.label}
+                        </span>
+                        <p>{feature.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-amber-200 bg-white/80 p-5 text-sm text-amber-900 shadow-sm">
+                    <div>
+                      <h4 className="text-sm font-semibold text-neutral-900">¿Necesitas un backoffice como este?</h4>
+                      <p className="mt-1 text-neutral-600">Te ayudamos a mapear procesos y lanzar un panel que tu equipo adopte desde el primer día.</p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <a
+                        href={WHATSAPP_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-700"
+                      >
+                        Agenda llamada
+                      </a>
+                      <button
+                        type="button"
+                        onClick={closeModal}
+                        className="inline-flex items-center justify-center rounded-xl border border-neutral-200 px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-neutral-50"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeProjectModal === "FASHION_LANDING" && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="fashion-landing-modal-title"
+              onClick={closeModal}
+            >
+              <div
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-500"
+                  aria-label="Cerrar modal de la landing de moda"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
+                  </svg>
+                </button>
+
+                <div className="grid gap-6 px-6 py-8 sm:px-10 sm:py-10">
+                  <div>
+                    <span className="inline-flex items-center rounded-full bg-rose-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rose-600">
+                      Moda
+                    </span>
+                    <h3 id="fashion-landing-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
+                      Landing page ecommerce de moda
+                    </h3>
+                    <p className="mt-3 text-base text-neutral-600">{FASHION_LANDING_DESCRIPTION}</p>
+                  </div>
+
+                  {renderDesktopGallery(FASHION_LANDING_IMAGES, "Captura de landing de moda")}
+
+                  <div className="grid gap-3 rounded-2xl border border-rose-100 bg-rose-50/70 p-5 text-sm text-rose-900">
+                    {FASHION_LANDING_FEATURES.map((feature) => (
+                      <div key={feature.label} className="flex items-start gap-3">
+                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-rose-500 px-2 text-xs font-semibold text-white">
                           {feature.label}
                         </span>
                         <p>{feature.detail}</p>
@@ -472,7 +1156,65 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
+                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-500"
+                    >
+                      Cerrar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeProjectModal === "BEAUTY_LANDING" && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="beauty-landing-modal-title"
+              onClick={closeModal}
+            >
+              <div
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
+                  aria-label="Cerrar modal de la landing de belleza"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
+                  </svg>
+                </button>
+
+                <div className="grid gap-6 px-6 py-8 sm:px-10 sm:py-10">
+                  <div>
+                    <span className="inline-flex items-center rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600">
+                      Belleza
+                    </span>
+                    <h3 id="beauty-landing-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
+                      Landing page productos de belleza
+                    </h3>
+                    <p className="mt-3 text-base text-neutral-600">{BEAUTY_LANDING_DESCRIPTION}</p>
+                  </div>
+
+                  {renderDesktopGallery(BEAUTY_LANDING_IMAGES, "Captura de landing de belleza")}
+
+                  <div className="grid gap-3 rounded-2xl border border-orange-100 bg-orange-50/80 p-5 text-sm text-orange-900">
+                    {BEAUTY_LANDING_FEATURES.map((feature) => (
+                      <div key={feature.label} className="flex items-start gap-3">
+                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-orange-500 px-2 text-xs font-semibold text-white">
+                          {feature.label}
+                        </span>
+                        <p>{feature.detail}</p>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
                     >
                       Cerrar
                     </button>
@@ -515,25 +1257,8 @@ export default function Home() {
                     </h3>
                     <p className="mt-3 text-base text-neutral-600">{POS_DESCRIPTION}</p>
                   </div>
-                  {renderDesktopGallery(POS_IMAGES, "Captura del punto de venta")}
 
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-blue-100 bg-blue-50/80 p-4 text-sm text-blue-900">
-                    <div className="flex items-start gap-3">
-                      <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-semibold">
-                        ERP
-                      </span>
-                      <p>
-                        Gestión de inventario en tiempo real, control granular de usuarios, sincronización con balanzas, generación de tickets fiscales y módulo de reportes diarios.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={closeModal}
-                      className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-                    >
-                      Cerrar
-                    </button>
-                  </div>
+                  {renderDesktopGallery(POS_IMAGES, "Captura del punto de venta")}
                 </div>
               </div>
             </div>
@@ -558,10 +1283,7 @@ export default function Home() {
                   aria-label="Cerrar modal de la App de Pollería"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
-                    <path
-                      fill="currentColor"
-                      d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z"
-                    />
+                    <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
                   </svg>
                 </button>
 
@@ -587,18 +1309,70 @@ export default function Home() {
                         <p>{role.detail}</p>
                       </div>
                     ))}
-                    <button
-                      type="button"
-                      onClick={closeModal}
-                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600"
-                    >
-                      Cerrar
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           )}
+
+          {imagePreview && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Vista ampliada de ${imagePreview.alt}`}
+              onClick={closePreview}
+            >
+              <div
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl bg-neutral-900"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={closePreview}
+                  className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900/80 text-white shadow-lg transition hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                  aria-label="Cerrar vista ampliada"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
+                    <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
+                  </svg>
+                </button>
+
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src={imagePreview.src}
+                    alt={imagePreview.alt}
+                    fill
+                    sizes="100vw"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Proceso */}
+          <section id="proceso" className="bg-neutral-50 py-16 sm:py-20 border-t border-neutral-200/60">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Nuestro proceso</h2>
+              <div className="mt-6 grid md:grid-cols-5 gap-4">
+                {[
+                  { n: "01", t: "Descubrimiento", d: "Objetivos, métricas y alcance." },
+                  { n: "02", t: "Diseño", d: "UX/UI y arquitectura técnica." },
+                  { n: "03", t: "Desarrollo", d: "Sprints ágiles y revisiones." },
+                  { n: "04", t: "QA", d: "Pruebas, seguridad y performance." },
+                  { n: "05", t: "Deploy", d: "Monitoreo y mejora continua." },
+                ].map((s, i) => (
+                  <div key={i} className="rounded-2xl border border-neutral-200 bg-white p-5">
+                    <div className="text-xs font-mono text-blue-600">{s.n}</div>
+                    <div className="mt-1 font-semibold">{s.t}</div>
+                    <div className="mt-1 text-sm text-neutral-600">{s.d}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </main>
 
         {/* Bloques existentes */}

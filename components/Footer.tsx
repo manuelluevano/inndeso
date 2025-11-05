@@ -6,10 +6,9 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const social = {
     facebook: "https://www.facebook.com/profile.php?id=61578554534142",
-    instagram: "https://www.instagram.com/tu_usuario",
-    tiktok: "https://www.tiktok.com/@tu_usuario",
-    whatsapp:
-      "https://wa.me/523315203120?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n",
+    instagram: "https://www.instagram.com/inndeso_mx",
+    tiktok: "https://www.tiktok.com/@inndeso",
+    whatsapp: "https://wa.me/523312050703?text=Hola%20INNDESO%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n",
   };
 
   return (
@@ -58,6 +57,9 @@ const Footer = () => {
             <p className="mt-4 text-sm text-neutral-400 leading-relaxed">
               Innovación y desarrollo de software a la medida. Creamos productos
               digitales eficientes, escalables y con impacto real.
+            </p>
+            <p className="mt-3 text-xs text-neutral-500 leading-relaxed">
+              Agencia de desarrollo web y tiendas en línea en Guadalajara. Diseñamos páginas web, e-commerce y sistemas internos para que tu negocio venda más.
             </p>
 
             {/* Redes sociales */}
@@ -125,7 +127,7 @@ const Footer = () => {
                   <path fill="currentColor" d="M6.62 10.79a15.052 15.052 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.85 22 2 13.15 2 2a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01z" />
                 </svg>
                 <a href={social.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-                  +52 33 1520 3120
+                  +52 33 1205 0703
                 </a>
               </li>
               <li className="flex items-start gap-3">

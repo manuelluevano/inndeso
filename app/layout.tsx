@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,6 +9,8 @@ import Footer from "@/components/Footer";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://inndeso.com.mx";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -16,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | INNDESO",
   },
   description:
-    "Empresa de desarrollo de software en México: aplicaciones web y móviles, APIs e integraciones, cloud y DevOps. Entregas ágiles, calidad y seguridad.",
+    "Empresa de desarrollo de software en México: páginas web, tiendas en línea, apps móviles, APIs e integraciones, cloud y DevOps. Entregas ágiles, calidad y seguridad.",
   keywords: [
     "desarrollo de software",
     "aplicaciones web",
@@ -29,6 +32,11 @@ export const metadata: Metadata = {
     "Node.js",
     "React",
     "NestJS",
+    "páginas web profesionales",
+    "tiendas en línea en México",
+    "sistemas a la medida",
+    "automatización de procesos empresariales",
+    "desarrollo de software Guadalajara",
   ],
   category: "technology",
   alternates: {
@@ -75,6 +83,11 @@ export const metadata: Metadata = {
     icon: "/icono.png",
     shortcut: "/icono.png",
   },
+  verification: GOOGLE_SITE_VERIFICATION
+    ? {
+        google: GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -95,6 +108,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 })(window,document,'script','dataLayer','${GTM_ID}');`
             }}
           />
+        )}
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script
+              id="ga-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });
+                `,
+              }}
+            />
+          </>
         )}
         {/* JSON-LD: Organization + WebSite */}
         <script
