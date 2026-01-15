@@ -1,6 +1,6 @@
 
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent, KeyboardEvent, ReactNode } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
@@ -98,33 +98,37 @@ const ADMIN_LOCAL_FEATURES = [
   { label: "Inventario", detail: "Entradas, salidas y alertas de stock crítico sincronizadas con proveedores." },
 ];
 
-const FASHION_LANDING_IMAGES = [
-  "/portfolio/eccomerce1/lookbook-1.jpg",
-  "/portfolio/eccomerce1/lookbook-2.jpg",
-  "/portfolio/eccomerce1/lookbook-3.jpg",
+const SUPERENVASES_IMAGES = [
+  "/portfolio/SUPERENVASES/superenvases-1.png",
+  "/portfolio/SUPERENVASES/superenvases-2.png",
+  "/portfolio/SUPERENVASES/superenvases-3.png",
+  "/portfolio/SUPERENVASES/superenvases-4.png",
 ];
 
-const FASHION_LANDING_DESCRIPTION =
-  "Landing page de ecommerce para marca de moda con catálogo editorial, carrusel de colecciones y llamados a la acción conectados a CRM.";
+const SUPERENVASES_DESCRIPTION =
+  "Landing page informativa para fabricación de envases de plástico, con catálogo de productos, detalles del proceso y contacto directo por WhatsApp.";
 
-const FASHION_LANDING_FEATURES = [
-  { label: "Catálogo", detail: "Colección por temporadas con carruseles y vitrinas destacadas." },
-  { label: "Conversiones", detail: "Formularios de venta conectados a HubSpot y pixel de Meta configurado." },
-  { label: "SEO", detail: "Contenido optimizado para búsquedas de moda y blog integrado." },
+const SUPERENVASES_FEATURES = [
+  { label: "Catálogo", detail: "Galería de envases con materiales, capacidades y usos principales." },
+  { label: "Proceso", detail: "Secciones claras sobre fabricación, calidad y tiempos de entrega." },
+  { label: "WhatsApp", detail: "CTA visible para cotizar al instante con el equipo comercial." },
 ];
 
-const BEAUTY_LANDING_IMAGES = [
-  "/portfolio/eccomerce2/beauty-1.jpg",
-  "/portfolio/eccomerce2/beauty-2.jpg",
+const FERTIKHOR_IMAGES = [
+  "/portfolio/FERTIKHOR/fertikhor-1.png",
+  "/portfolio/FERTIKHOR/fertikhor-2.png",
+  "/portfolio/FERTIKHOR/fertikhor-3.png",
+  "/portfolio/FERTIKHOR/fertikhor-4.png",
+  "/portfolio/FERTIKHOR/fertikhor-5.png",
 ];
 
-const BEAUTY_LANDING_DESCRIPTION =
-  "Landing page de productos de belleza con secciones de beneficios, testimonios, comparativo de planes y checkout enlazado a tienda Shopify.";
+const FERTIKHOR_DESCRIPTION =
+  "Landing page para fábrica química industrial de fertilizantes de alta concentración y asimilación, con contacto por redes sociales, WhatsApp y formulario.";
 
-const BEAUTY_LANDING_FEATURES = [
-  { label: "Storytelling", detail: "Sección hero con video, ingredientes destacados y storytelling de marca." },
-  { label: "Social proof", detail: "Testimonios, métricas sociales y preguntas frecuentes integradas." },
-  { label: "Conversiones", detail: "Botón de compra directa a Shopify y automatización de email marketing." },
+const FERTIKHOR_FEATURES = [
+  { label: "Industria", detail: "Ficha de productos, concentraciones y beneficios técnicos destacados." },
+  { label: "Contacto", detail: "Accesos directos a redes sociales y WhatsApp en todo el recorrido." },
+  { label: "Formulario", detail: "Captura de prospectos con formulario de cotización integrado." },
 ];
 
 type ModalKey =
@@ -132,8 +136,8 @@ type ModalKey =
   | "APP_POLLOS"
   | "ECOM_SERCOMIN"
   | "ADMIN_LOCAL"
-  | "FASHION_LANDING"
-  | "BEAUTY_LANDING";
+  | "SUPERENVASES"
+  | "FERTIKHOR";
 type LeadField = "name" | "email" | "need";
 
 type ServiceCard = {
@@ -306,18 +310,18 @@ const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     result: "Control total de servicios y almacén en múltiples sucursales",
   },
   {
-    title: "E-commerce para boutique de moda",
-    tags: ["Next.js", "Tailwind", "Shopify"],
-    img: "/portfolio/eccomerce1/lookbook-1.jpg",
-    modalKey: "FASHION_LANDING",
-    result: "Generación de leads B2B con formularios conectados a HubSpot",
+    title: "Landing industrial de envases",
+    tags: ["Next.js", "Landing", "WhatsApp"],
+    img: "/portfolio/SUPERENVASES/superenvases-1.png",
+    modalKey: "SUPERENVASES",
+    result: "Canal directo de cotizaciones con catálogo de productos",
   },
   {
-    title: "E-commerce de cuidado personal",
-    tags: ["Next.js", "Marketing", "Shopify"],
-    img: "/portfolio/eccomerce2/beauty-1.jpg",
-    modalKey: "BEAUTY_LANDING",
-    result: "Página enfocada en captar demos con métricas sociales integradas",
+    title: "Landing química de fertilizantes",
+    tags: ["Next.js", "B2B", "Lead Gen"],
+    img: "/portfolio/FERTIKHOR/fertikhor-1.png",
+    modalKey: "FERTIKHOR",
+    result: "Prospectos B2B captados con formulario y redes sociales",
   },
   {
     title: "Punto de Venta Omnicanal",
@@ -395,12 +399,58 @@ const HOMEPAGE_WEBPAGE_JSON_LD = {
 export default function Home() {
   const [activeProjectModal, setActiveProjectModal] = useState<ModalKey | null>(null);
   const [imagePreview, setImagePreview] = useState<{ src: string; alt: string } | null>(null);
+  const projectModalRef = useRef<HTMLDivElement | null>(null);
+  const previewModalRef = useRef<HTMLDivElement | null>(null);
+  const lastFocusBeforeProjectModal = useRef<HTMLElement | null>(null);
+  const lastFocusBeforePreview = useRef<HTMLElement | null>(null);
 
   const closeModal = () => setActiveProjectModal(null);
   const openModal = (modal: ModalKey) => setActiveProjectModal(modal);
 
   const closePreview = () => setImagePreview(null);
   const openPreview = (src: string, alt: string) => setImagePreview({ src, alt });
+
+  const handleModalKeyDown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    onClose: () => void,
+    container: HTMLDivElement | null,
+  ) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      onClose();
+      return;
+    }
+
+    if (event.key !== "Tab" || !container) {
+      return;
+    }
+
+    const focusable = Array.from(
+      container.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((element) => !element.hasAttribute("disabled") && element.getAttribute("aria-hidden") !== "true");
+
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+
+    if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   useEffect(() => {
     if (!activeProjectModal && !imagePreview) {
@@ -416,20 +466,40 @@ export default function Home() {
     };
   }, [activeProjectModal, imagePreview]);
 
+  useEffect(() => {
+    if (activeProjectModal) {
+      lastFocusBeforeProjectModal.current = document.activeElement as HTMLElement | null;
+      requestAnimationFrame(() => projectModalRef.current?.focus());
+      return;
+    }
+
+    if (lastFocusBeforeProjectModal.current) {
+      lastFocusBeforeProjectModal.current.focus();
+      lastFocusBeforeProjectModal.current = null;
+    }
+  }, [activeProjectModal]);
+
+  useEffect(() => {
+    if (imagePreview) {
+      lastFocusBeforePreview.current = document.activeElement as HTMLElement | null;
+      requestAnimationFrame(() => previewModalRef.current?.focus());
+      return;
+    }
+
+    if (lastFocusBeforePreview.current) {
+      lastFocusBeforePreview.current.focus();
+      lastFocusBeforePreview.current = null;
+    }
+  }, [imagePreview]);
+
   const renderPhoneScreens = (images: string[], altPrefix: string) => (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
       {images.map((img, index) => (
-        <div
+        <button
           key={img}
-          role="button"
-          tabIndex={0}
+          type="button"
           onClick={() => openPreview(img, `${altPrefix} ${index + 1}`)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              openPreview(img, `${altPrefix} ${index + 1}`);
-            }
-          }}
+          aria-label={`Ver ${altPrefix} ${index + 1}`}
           className="relative aspect-[9/16] w-full max-w-[220px] sm:max-w-[240px] cursor-zoom-in rounded-[32px] bg-neutral-950/80 p-3 shadow-xl shadow-neutral-900/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-600"
         >
           <div className="relative h-full w-full overflow-hidden rounded-[24px] bg-neutral-50">
@@ -442,7 +512,7 @@ export default function Home() {
               loading="lazy"
             />
           </div>
-        </div>
+        </button>
       ))}
     </div>
   );
@@ -450,17 +520,11 @@ export default function Home() {
   const renderDesktopGallery = (images: string[], altPrefix: string) => (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {images.map((img, index) => (
-        <div
+        <button
           key={img}
-          role="button"
-          tabIndex={0}
+          type="button"
           onClick={() => openPreview(img, `${altPrefix} ${index + 1}`)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              openPreview(img, `${altPrefix} ${index + 1}`);
-            }
-          }}
+          aria-label={`Ver ${altPrefix} ${index + 1}`}
           className="relative aspect-[4/3] cursor-zoom-in overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
         >
           <Image
@@ -471,7 +535,7 @@ export default function Home() {
             className={index === 0 ? "object-cover object-top" : "object-cover"}
             loading="lazy"
           />
-        </div>
+        </button>
       ))}
     </div>
   );
@@ -965,9 +1029,12 @@ export default function Home() {
               aria-modal="true"
               aria-labelledby="ecom-sercomin-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
@@ -1040,9 +1107,12 @@ export default function Home() {
               aria-modal="true"
               aria-labelledby="admin-local-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
@@ -1108,23 +1178,26 @@ export default function Home() {
             </div>
           )}
 
-          {activeProjectModal === "FASHION_LANDING" && (
+          {activeProjectModal === "SUPERENVASES" && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
               role="dialog"
               aria-modal="true"
-              aria-labelledby="fashion-landing-modal-title"
+              aria-labelledby="superenvases-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-500"
-                  aria-label="Cerrar modal de la landing de moda"
+                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500"
+                  aria-label="Cerrar modal de Super Envases"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
                     <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
@@ -1133,21 +1206,21 @@ export default function Home() {
 
                 <div className="grid gap-6 px-6 py-8 sm:px-10 sm:py-10">
                   <div>
-                    <span className="inline-flex items-center rounded-full bg-rose-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rose-600">
-                      Moda
+                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                      Industria
                     </span>
-                    <h3 id="fashion-landing-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
-                      Landing page ecommerce de moda
+                    <h3 id="superenvases-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
+                      Super Envases
                     </h3>
-                    <p className="mt-3 text-base text-neutral-600">{FASHION_LANDING_DESCRIPTION}</p>
+                    <p className="mt-3 text-base text-neutral-600">{SUPERENVASES_DESCRIPTION}</p>
                   </div>
 
-                  {renderDesktopGallery(FASHION_LANDING_IMAGES, "Captura de landing de moda")}
+                  {renderDesktopGallery(SUPERENVASES_IMAGES, "Captura de landing Super Envases")}
 
-                  <div className="grid gap-3 rounded-2xl border border-rose-100 bg-rose-50/70 p-5 text-sm text-rose-900">
-                    {FASHION_LANDING_FEATURES.map((feature) => (
+                  <div className="grid gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/80 p-5 text-sm text-emerald-900">
+                    {SUPERENVASES_FEATURES.map((feature) => (
                       <div key={feature.label} className="flex items-start gap-3">
-                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-rose-500 px-2 text-xs font-semibold text-white">
+                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-emerald-600 px-2 text-xs font-semibold text-white">
                           {feature.label}
                         </span>
                         <p>{feature.detail}</p>
@@ -1156,7 +1229,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-500"
+                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500"
                     >
                       Cerrar
                     </button>
@@ -1166,23 +1239,26 @@ export default function Home() {
             </div>
           )}
 
-          {activeProjectModal === "BEAUTY_LANDING" && (
+          {activeProjectModal === "FERTIKHOR" && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6"
               role="dialog"
               aria-modal="true"
-              aria-labelledby="beauty-landing-modal-title"
+              aria-labelledby="fertikhor-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
-                  aria-label="Cerrar modal de la landing de belleza"
+                  className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-600 shadow-sm transition hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-500"
+                  aria-label="Cerrar modal de Fertikhor"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
                     <path fill="currentColor" d="M6.225 4.811 4.81 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
@@ -1191,21 +1267,21 @@ export default function Home() {
 
                 <div className="grid gap-6 px-6 py-8 sm:px-10 sm:py-10">
                   <div>
-                    <span className="inline-flex items-center rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-600">
-                      Belleza
+                    <span className="inline-flex items-center rounded-full bg-lime-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-lime-700">
+                      Agroindustria
                     </span>
-                    <h3 id="beauty-landing-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
-                      Landing page productos de belleza
+                    <h3 id="fertikhor-modal-title" className="mt-4 text-2xl font-bold text-neutral-900">
+                      Fertikhor
                     </h3>
-                    <p className="mt-3 text-base text-neutral-600">{BEAUTY_LANDING_DESCRIPTION}</p>
+                    <p className="mt-3 text-base text-neutral-600">{FERTIKHOR_DESCRIPTION}</p>
                   </div>
 
-                  {renderDesktopGallery(BEAUTY_LANDING_IMAGES, "Captura de landing de belleza")}
+                  {renderDesktopGallery(FERTIKHOR_IMAGES, "Captura de landing Fertikhor")}
 
-                  <div className="grid gap-3 rounded-2xl border border-orange-100 bg-orange-50/80 p-5 text-sm text-orange-900">
-                    {BEAUTY_LANDING_FEATURES.map((feature) => (
+                  <div className="grid gap-3 rounded-2xl border border-lime-100 bg-lime-50/80 p-5 text-sm text-lime-900">
+                    {FERTIKHOR_FEATURES.map((feature) => (
                       <div key={feature.label} className="flex items-start gap-3">
-                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-orange-500 px-2 text-xs font-semibold text-white">
+                        <span className="mt-1 inline-flex h-6 min-w-[96px] items-center justify-center rounded-full bg-lime-600 px-2 text-xs font-semibold text-white">
                           {feature.label}
                         </span>
                         <p>{feature.detail}</p>
@@ -1214,7 +1290,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-500"
+                      className="mt-2 inline-flex items-center gap-2 self-end rounded-xl bg-lime-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-lime-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-500"
                     >
                       Cerrar
                     </button>
@@ -1231,9 +1307,12 @@ export default function Home() {
               aria-modal="true"
               aria-labelledby="pos-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
@@ -1271,9 +1350,12 @@ export default function Home() {
               aria-modal="true"
               aria-labelledby="app-pollos-modal-title"
               onClick={closeModal}
+              onKeyDown={(event) => handleModalKeyDown(event, closeModal, projectModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl"
+                ref={projectModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-500"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
@@ -1322,9 +1404,12 @@ export default function Home() {
               aria-modal="true"
               aria-label={`Vista ampliada de ${imagePreview.alt}`}
               onClick={closePreview}
+              onKeyDown={(event) => handleModalKeyDown(event, closePreview, previewModalRef.current)}
             >
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl bg-neutral-900"
+                ref={previewModalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl bg-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
                 onClick={(event) => event.stopPropagation()}
               >
                 <button
