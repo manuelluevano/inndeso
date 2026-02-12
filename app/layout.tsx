@@ -4,6 +4,12 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import FloatingContact from "@/components/FloatingContact";
+import RevealObserver from "@/components/RevealObserver";
+import PageTransition from "@/components/PageTransition";
+import EngagementTracker from "@/components/EngagementTracker";
+import RouteChangeTracker from "@/components/RouteChangeTracker";
 
 
 
@@ -171,7 +177,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="min-h-screen bg-gradient-to-b from-white via-neutral-50 to-white text-neutral-900 antialiased">
+      <body className="min-h-screen bg-white text-neutral-900 antialiased">
+        <ScrollProgress />
+        <RevealObserver />
+        <EngagementTracker />
+        <RouteChangeTracker />
         {GTM_ID && (
           <noscript>
             <iframe
@@ -192,11 +202,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="pointer-events-none absolute inset-x-0 -top-10 -z-10 flex justify-center">
             <div className="h-40 w-[36rem] bg-blue-500/5 blur-3xl rounded-full" />
           </div>
-          {children}
+          <PageTransition>{children}</PageTransition>
         </div>
 
         {/* FOOTER */}
         <Footer/>
+        <FloatingContact />
       </body>
     </html>
   );

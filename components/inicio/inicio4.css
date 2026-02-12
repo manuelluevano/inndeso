@@ -1,0 +1,100 @@
+.inicio4-section {
+  background: #f7f8fa;
+  padding: 84px 32px 92px;
+}
+
+.inicio4-wrap {
+  margin: 0 auto;
+  max-width: 1240px;
+  text-align: center;
+}
+
+.inicio4-title {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  color: #0f172a;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.inicio4-text {
+  margin: 44px auto 0;
+  max-width: 1000px;
+  font-family: Montserrat, sans-serif;
+  color: #263244;
+  font-size: 24px;
+  line-height: 1.22;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.inicio4-carousel {
+  margin-top: 62px;
+}
+
+.inicio4-cta {
+  margin-top: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 210px;
+  height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4b8de8 0%, #3674ca 100%);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(46, 101, 187, 0.3);
+}
+
+@media (max-width: 1100px) {
+  .inicio4-title {
+    font-size: 46px;
+  }
+
+  .inicio4-text {
+    font-size: 18px;
+    margin-top: 42px;
+  }
+
+  .inicio4-carousel {
+    margin-top: 44px;
+  }
+
+  .inicio4-cta {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 860px) {
+  .inicio4-section {
+    padding: 62px 16px 68px;
+  }
+
+  .inicio4-title {
+    font-size: clamp(34px, 8vw, 42px);
+  }
+
+  .inicio4-text {
+    margin-top: 34px;
+    font-size: clamp(16px, 3.8vw, 19px);
+  }
+
+  .inicio4-carousel {
+    margin-top: 36px;
+  }
+
+  .inicio4-cta {
+    margin-top: 40px;
+    min-width: 176px;
+    height: 44px;
+    font-size: 16px;
+  }
+}
