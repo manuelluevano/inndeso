@@ -50,7 +50,7 @@ export default function Inicio() {
           </p>
 
           <a
-            href="#servicios"
+            href="/proyectos"
             className="inicio-cta"
             data-track-cta="true"
             data-cta-name="hero_conocer_mas"

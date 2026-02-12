@@ -51,7 +51,9 @@ export default function Inicio2() {
         </div>
 
         <a
-          href="#servicios"
+          href="https://wa.me/523312050703"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inicio2-cta"
           data-track-cta="true"
           data-cta-name="inicio2_mas_informacion"

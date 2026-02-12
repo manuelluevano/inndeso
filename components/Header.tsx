@@ -40,7 +40,14 @@ const Header = () => {
         <div className="border-b border-slate-200/80 bg-slate-100/90 shadow-[0_10px_24px_rgba(15,23,42,0.14)] backdrop-blur-md">
           <div className="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
             <Link href="/" className="inline-flex items-center" aria-label="Ir al inicio">
-              <Image src="/logo.png" alt="INNDESO" width={430} height={112} className="h-16 w-auto sm:h-[4.35rem]" priority />
+              <Image
+                src="/logo.png"
+                alt="INNDESO"
+                width={430}
+                height={112}
+                className="h-28 w-auto -my-5 sm:h-32 sm:-my-6"
+                priority
+              />
             </Link>
 
             <nav className="hidden items-center gap-6 lg:gap-8 md:flex" aria-label="Navegacion principal">
