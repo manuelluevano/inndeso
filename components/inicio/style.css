@@ -1,0 +1,156 @@
+.inicio-hero {
+  --hero-parallax: 0px;
+  position: relative;
+  overflow: hidden;
+  min-height: 88svh;
+  color: #fff;
+  background-image: url("./inicio.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: inicioHeroDrift 18s ease-in-out infinite alternate;
+}
+
+.inicio-hero:hover {
+  animation-play-state: paused;
+}
+
+.inicio-overlay {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc(var(--hero-parallax) * -0.35));
+  transition: transform 180ms linear;
+  background:
+    radial-gradient(circle at 20% 35%, rgba(8, 26, 57, 0.14) 0%, rgba(8, 26, 57, 0.28) 30%, rgba(8, 26, 57, 0.52) 60%, rgba(8, 26, 57, 0.74) 100%),
+    linear-gradient(180deg, rgba(10, 20, 36, 0.28) 0%, rgba(10, 20, 36, 0.36) 55%, rgba(10, 20, 36, 0.56) 100%);
+}
+
+.inicio-frame {
+  position: relative;
+  z-index: 1;
+  min-height: 88svh;
+}
+
+.inicio-content {
+  position: absolute;
+  right: 24px;
+  left: 95px;
+  bottom: 20%;
+  max-width: 980px;
+  transform: translateY(var(--hero-parallax));
+}
+
+.inicio-title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+}
+
+.inicio-title-line {
+  white-space: nowrap;
+}
+
+.inicio-title-accent {
+  color: #3e82d9;
+}
+
+.inicio-subtitle {
+  margin-top: 22px;
+  max-width: 760px;
+  font-size: clamp(18px, 1.32vw, 23px);
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(243, 247, 255, 0.96);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inicio-cta {
+  margin-top: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 186px;
+  height: 48px;
+  border-radius: 999px;
+  border: 2px solid rgba(233, 239, 250, 0.95);
+  color: #f2f6ff;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 600;
+  background: rgba(178, 193, 214, 0.18);
+  box-shadow: 0 0 0 2px rgba(106, 123, 146, 0.28);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease;
+}
+
+.inicio-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(8, 24, 47, 0.36);
+  background: rgba(178, 193, 214, 0.28);
+}
+
+@keyframes inicioHeroDrift {
+  from { background-position: center 46%; }
+  to { background-position: center 54%; }
+}
+
+@media (max-width: 1240px) {
+  .inicio-content {
+    left: 44px;
+    right: 20px;
+    bottom: 16%;
+  }
+}
+
+@media (max-width: 920px) {
+  .inicio-hero,
+  .inicio-frame {
+    min-height: 80svh;
+  }
+
+  .inicio-content {
+    left: 22px;
+    right: 16px;
+    bottom: 15%;
+    max-width: min(92vw, 560px);
+  }
+
+  .inicio-title {
+    font-size: clamp(28px, 7.6vw, 38px);
+  }
+
+  .inicio-title-line {
+    white-space: normal;
+  }
+
+  .inicio-subtitle {
+    margin-top: 16px;
+    font-size: clamp(16px, 4.1vw, 19px);
+  }
+
+  .inicio-cta {
+    margin-top: 20px;
+    min-width: 142px;
+    height: 42px;
+    font-size: 15px;
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inicio-hero {
+    animation: none;
+  }
+
+  .inicio-overlay,
+  .inicio-content {
+    transform: none;
+    transition: none;
+  }
+
+  .inicio-cta {
+    transition: none;
+  }
+}

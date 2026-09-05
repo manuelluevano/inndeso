@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sana Life, mapa de repartidores en vivo</title>
+  <desc id="desc">Pantalla demostrativa con datos ficticios de una plataforma logística veterinaria.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#143c32" flood-opacity=".12"/></filter>
+    <pattern id="streets" width="120" height="90" patternUnits="userSpaceOnUse"><path d="M0 20H120M25 0V90M82 0V90" stroke="#dce3de" stroke-width="2"/><path d="M0 61H120M55 0V90" stroke="#e9edea"/></pattern>
+    <linearGradient id="hero" x1="0" x2="1"><stop stop-color="#123e34"/><stop offset="1" stop-color="#245f50"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#f4f2eb"/>
+  <rect width="246" height="1000" fill="#10382f"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="25" y="28" width="48" height="48" rx="14" fill="#fff"/><path d="M39 58c11-20 23-15 24-2-7 10-17 12-24 2Z" fill="#75a84a"/><circle cx="52" cy="50" r="4" fill="#ec6a42"/>
+    <text x="86" y="51" fill="#fff" font-size="21" font-weight="700">Sana Life</text><text x="86" y="70" fill="#a9c6bc" font-size="11" letter-spacing="2">CENTRO OPERATIVO</text>
+    <text x="28" y="130" fill="#7fa89c" font-size="10" font-weight="700" letter-spacing="2">OPERACIÓN</text>
+    <g font-size="14" fill="#c4d5d0"><text x="54" y="174">Inicio</text><text x="54" y="224">Rutas</text><text x="54" y="274">Mapa de rutas</text></g>
+    <rect x="18" y="298" width="210" height="48" rx="12" fill="#f16b43"/><circle cx="40" cy="322" r="6" fill="#fff"/><text x="54" y="327" fill="#fff" font-size="14" font-weight="700">Mapa en vivo</text>
+    <g font-size="14" fill="#c4d5d0"><text x="54" y="388">Pedidos</text><text x="54" y="438">Clientes</text><text x="54" y="488">Productos</text><text x="54" y="538">Corte de caja</text><text x="54" y="588">Métricas</text><text x="54" y="638">Reportes</text><text x="54" y="688">Alertas</text></g>
+    <circle cx="36" cy="944" r="5" fill="#2bd496"/><text x="52" y="949" fill="#c4d5d0" font-size="12">Operación conectada</text>
+
+    <text x="286" y="61" fill="#64766f" font-size="11" letter-spacing="2">OPERACIÓN DIARIA</text>
+    <rect x="1334" y="34" width="218" height="34" rx="17" fill="#edf0eb" stroke="#d9dfda"/><circle cx="1354" cy="51" r="5" fill="#2bc98e"/><text x="1370" y="56" fill="#26483f" font-size="12" font-weight="700">DEMO · DATOS FICTICIOS</text>
+    <text x="286" y="122" fill="#123e34" font-size="14" font-weight="700" letter-spacing="2">SEGUIMIENTO EN CAMPO</text>
+    <text x="286" y="170" fill="#0e2721" font-size="42" font-weight="800">Mapa de repartidores en vivo</text>
+    <text x="286" y="202" fill="#6d7e78" font-size="16">Consulta ubicación, ruta, avance y última señal de cada jornada activa.</text>
+    <rect x="1390" y="128" width="162" height="52" rx="15" fill="#123e34"/><text x="1430" y="160" fill="#fff" font-size="14" font-weight="700">↻  Actualizar</text>
+
+    <g filter="url(#shadow)">
+      <rect x="286" y="238" width="285" height="122" rx="22" fill="#fff"/><circle cx="326" cy="278" r="21" fill="#e6f6ee"/><text x="318" y="286" fill="#16865f" font-size="24">●</text><text x="362" y="275" fill="#788781" font-size="11" font-weight="700">REPARTIDORES ACTIVOS</text><text x="362" y="315" fill="#102a23" font-size="32" font-weight="800">6</text><text x="362" y="337" fill="#6f7d78" font-size="12">de 8 asignados</text>
+      <rect x="587" y="238" width="285" height="122" rx="22" fill="#fff"/><circle cx="627" cy="278" r="21" fill="#eaf1ff"/><text x="619" y="286" fill="#2e6bea" font-size="22">↗</text><text x="663" y="275" fill="#788781" font-size="11" font-weight="700">ENTREGAS COMPLETADAS</text><text x="663" y="315" fill="#102a23" font-size="32" font-weight="800">47</text><text x="663" y="337" fill="#6f7d78" font-size="12">68% del plan de hoy</text>
+      <rect x="888" y="238" width="285" height="122" rx="22" fill="#fff"/><circle cx="928" cy="278" r="21" fill="#fff1e9"/><text x="919" y="286" fill="#ef6b43" font-size="22">$</text><text x="964" y="275" fill="#788781" font-size="11" font-weight="700">COBRANZA REGISTRADA</text><text x="964" y="315" fill="#102a23" font-size="30" font-weight="800">$38,420</text><text x="964" y="337" fill="#6f7d78" font-size="12">efectivo y transferencia</text>
+      <rect x="1189" y="238" width="363" height="122" rx="22" fill="url(#hero)"/><text x="1216" y="276" fill="#acd4c7" font-size="11" font-weight="700">ÚLTIMA SINCRONIZACIÓN</text><circle cx="1223" cy="309" r="6" fill="#2fe2aa"/><text x="1242" y="318" fill="#fff" font-size="24" font-weight="800">Hace 18 segundos</text><text x="1216" y="341" fill="#b9d1ca" font-size="12">6 señales recibidas</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <rect x="286" y="390" width="900" height="560" rx="25" fill="#fff"/>
+      <rect x="306" y="410" width="860" height="520" rx="18" fill="#edf1ed"/>
+      <rect x="306" y="410" width="860" height="520" rx="18" fill="url(#streets)"/>
+      <path d="M306 770C450 728 488 792 615 748s170-14 264-74 180-22 287-70" fill="none" stroke="#c8ddd4" stroke-width="38"/>
+      <path d="M355 830L500 720 570 760 676 630 790 674 918 542 1115 492" fill="none" stroke="#f16b43" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M355 830L500 720 570 760 676 630 790 674 918 542 1115 492" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="5 9"/>
+      <g fill="#fff" stroke="#123e34" stroke-width="6"><circle cx="355" cy="830" r="18"/><circle cx="500" cy="720" r="18"/><circle cx="570" cy="760" r="18"/><circle cx="676" cy="630" r="18"/><circle cx="790" cy="674" r="18"/><circle cx="918" cy="542" r="18"/><circle cx="1115" cy="492" r="18"/></g>
+      <g fill="#123e34" font-size="12" font-weight="800" text-anchor="middle"><text x="355" y="835">1</text><text x="500" y="725">2</text><text x="570" y="765">3</text><text x="676" y="635">4</text><text x="790" y="679">5</text><text x="918" y="547">6</text><text x="1115" y="497">7</text></g>
+      <circle cx="790" cy="674" r="38" fill="#2f70ff" opacity=".15"/><circle cx="790" cy="674" r="12" fill="#2f70ff" stroke="#fff" stroke-width="5"/>
+      <rect x="718" y="578" width="195" height="70" rx="15" fill="#fff" filter="url(#shadow)"/><text x="737" y="604" fill="#122b24" font-size="13" font-weight="800">Laura Méndez</text><circle cx="739" cy="625" r="5" fill="#2bd496"/><text x="753" y="630" fill="#667770" font-size="11">En ruta · señal en vivo</text>
+      <text x="329" y="440" fill="#77877f" font-size="10" font-weight="700">GUADALAJARA · OPERACIÓN DEMOSTRATIVA</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <rect x="1208" y="390" width="344" height="560" rx="25" fill="#fff"/>
+      <text x="1234" y="427" fill="#7b8a84" font-size="10" font-weight="700" letter-spacing="1.5">REPARTIDOR SELECCIONADO</text>
+      <circle cx="1268" cy="480" r="34" fill="#e8f0ff"/><text x="1256" y="489" fill="#2f6fff" font-size="24">LM</text>
+      <text x="1315" y="473" fill="#112a23" font-size="19" font-weight="800">Laura Méndez</text><text x="1315" y="496" fill="#718079" font-size="12">Ruta Centro · Unidad 04</text>
+      <rect x="1234" y="527" width="292" height="54" rx="14" fill="#edf8f3"/><circle cx="1254" cy="554" r="6" fill="#25c88c"/><text x="1271" y="559" fill="#176c50" font-size="13" font-weight="700">En movimiento · 24 km/h</text>
+      <g font-size="12"><text x="1234" y="622" fill="#7b8983">Última señal</text><text x="1430" y="622" fill="#17372e" font-weight="700">10:42:18</text><line x1="1234" y1="640" x2="1526" y2="640" stroke="#e4e9e6"/><text x="1234" y="675" fill="#7b8983">Batería</text><text x="1469" y="675" fill="#159364" font-weight="700">82%</text><line x1="1234" y1="693" x2="1526" y2="693" stroke="#e4e9e6"/><text x="1234" y="728" fill="#7b8983">Avance</text><text x="1462" y="728" fill="#17372e" font-weight="700">7 / 12</text><line x1="1234" y1="746" x2="1526" y2="746" stroke="#e4e9e6"/><text x="1234" y="781" fill="#7b8983">Cobranza</text><text x="1435" y="781" fill="#17372e" font-weight="700">$6,840</text></g>
+      <text x="1234" y="832" fill="#7b8a84" font-size="10" font-weight="700" letter-spacing="1.5">SIGUIENTE ENTREGA</text><text x="1234" y="861" fill="#16352d" font-size="14" font-weight="800">Veterinaria Los Arcos</text><text x="1234" y="883" fill="#74827d" font-size="11">4 productos · cobro pendiente</text>
+      <rect x="1234" y="903" width="292" height="31" rx="10" fill="#123e34"/><text x="1345" y="924" fill="#fff" font-size="11" font-weight="700">Centrar en el mapa  →</text>
+    </g>
+  </g>
+</svg>
