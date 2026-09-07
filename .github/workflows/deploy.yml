@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy INNDESO
 
 on:
   push:
@@ -6,29 +6,64 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run build  # ¡SOLO ESTE! next export ya no se necesita
-      - uses: actions/upload-pages-artifact@v3
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar INNDESO
+        run: npm run build
+
+      - name: Preparar build
+        run: touch out/.nojekyll
+
+      - name: Publicar build para servidores
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd out
+
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b server-build
+          git add -A
+          git commit -m "Build ${GITHUB_SHA}"
+
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin server-build
+
+      - name: Preparar GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out  # Next.js crea esta carpeta automáticamente con output: 'export'
+          path: ./out
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     needs: build
+
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Publicar GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
