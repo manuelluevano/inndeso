@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef4fb"/><stop offset="1" stop-color="#f9fbfd"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#246bfe"/><stop offset="1" stop-color="#5f8cff"/></linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#12b981"/><stop offset="1" stop-color="#46dfad"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#13233d" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="0" width="270" height="1000" fill="#081527"/>
+  <rect x="32" y="34" width="206" height="64" rx="18" fill="#10243e" stroke="#27415f"/>
+  <rect x="52" y="50" width="32" height="32" rx="10" fill="url(#green)"/>
+  <path d="M60 67l7 7 11-15" fill="none" stroke="#061723" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="99" y="63" font-family="Arial" font-size="13" font-weight="700" fill="#64e5b9" letter-spacing="2">CENTRO</text>
+  <text x="99" y="83" font-family="Arial" font-size="18" font-weight="800" fill="white">Operativo 360</text>
+  <text x="40" y="142" font-family="Arial" font-size="11" font-weight="700" fill="#71839b" letter-spacing="2">OPERACIÓN</text>
+  <g font-family="Arial" font-size="15" font-weight="700" fill="#aebbd0">
+    <rect x="28" y="162" width="214" height="52" rx="13" fill="#1c5bd0"/><circle cx="53" cy="188" r="7" fill="#8db1ff"/><text x="76" y="194" fill="white">Resumen</text>
+    <circle cx="53" cy="248" r="7" fill="#4f647f"/><text x="76" y="254">Ventas</text>
+    <circle cx="53" cy="308" r="7" fill="#4f647f"/><text x="76" y="314">Inventario</text>
+    <circle cx="53" cy="368" r="7" fill="#4f647f"/><text x="76" y="374">Órdenes</text>
+    <circle cx="53" cy="428" r="7" fill="#4f647f"/><text x="76" y="434">Equipo</text>
+    <circle cx="53" cy="488" r="7" fill="#4f647f"/><text x="76" y="494">Finanzas</text>
+    <circle cx="53" cy="548" r="7" fill="#4f647f"/><text x="76" y="554">Reportes</text>
+  </g>
+  <rect x="28" y="886" width="214" height="82" rx="16" fill="#10243e"/>
+  <circle cx="58" cy="927" r="17" fill="#2b6fff"/><text x="51" y="933" font-family="Arial" font-size="13" font-weight="800" fill="white">AM</text>
+  <text x="85" y="921" font-family="Arial" font-size="13" font-weight="800" fill="white">Ana Martínez</text>
+  <text x="85" y="942" font-family="Arial" font-size="11" fill="#8092a9">Administración</text>
+
+  <rect x="270" y="0" width="1330" height="92" fill="#fff"/>
+  <text x="318" y="39" font-family="Arial" font-size="12" font-weight="700" fill="#8290a3" letter-spacing="2">OPERACIÓN CENTRALIZADA</text>
+  <text x="318" y="70" font-family="Arial" font-size="24" font-weight="800" fill="#111d2f">Buenos días, Ana</text>
+  <rect x="1244" y="27" width="180" height="42" rx="14" fill="#eef5ff"/><circle cx="1270" cy="48" r="6" fill="#20c58e"/><text x="1286" y="53" font-family="Arial" font-size="13" font-weight="700" fill="#277056">Información al día</text>
+  <rect x="1440" y="27" width="120" height="42" rx="14" fill="#0b1729"/><text x="1470" y="53" font-family="Arial" font-size="13" font-weight="700" fill="white">Actualizar</text>
+
+  <text x="318" y="144" font-family="Arial" font-size="28" font-weight="800" fill="#111d2f">Todo tu negocio, en una sola vista</text>
+  <text x="318" y="173" font-family="Arial" font-size="14" fill="#728095">Ventas, inventario, cobranza y tareas conectadas en tiempo real.</text>
+  <g filter="url(#shadow)">
+    <rect x="318" y="206" width="282" height="142" rx="22" fill="#fff"/>
+    <circle cx="358" cy="246" r="20" fill="#e9f1ff"/><path d="M348 251h20M351 243h14" stroke="#2c6ffe" stroke-width="4" stroke-linecap="round"/>
+    <text x="390" y="241" font-family="Arial" font-size="12" font-weight="700" fill="#7b889b">VENTAS DE HOY</text><text x="390" y="280" font-family="Arial" font-size="31" font-weight="800" fill="#111d2f">$48,320</text><text x="390" y="310" font-family="Arial" font-size="12" font-weight="700" fill="#16aa78">↑ 18% vs. ayer</text>
+    <rect x="620" y="206" width="282" height="142" rx="22" fill="#fff"/>
+    <circle cx="660" cy="246" r="20" fill="#e4f8f0"/><rect x="650" y="237" width="20" height="18" rx="4" fill="#16b981"/>
+    <text x="692" y="241" font-family="Arial" font-size="12" font-weight="700" fill="#7b889b">ÓRDENES ACTIVAS</text><text x="692" y="280" font-family="Arial" font-size="31" font-weight="800" fill="#111d2f">24</text><text x="692" y="310" font-family="Arial" font-size="12" font-weight="700" fill="#16aa78">7 listas para entregar</text>
+    <rect x="922" y="206" width="282" height="142" rx="22" fill="#fff"/>
+    <circle cx="962" cy="246" r="20" fill="#fff1e8"/><path d="M952 253l10-16 10 16z" fill="#ff7a3e"/>
+    <text x="994" y="241" font-family="Arial" font-size="12" font-weight="700" fill="#7b889b">STOCK BAJO</text><text x="994" y="280" font-family="Arial" font-size="31" font-weight="800" fill="#111d2f">8</text><text x="994" y="310" font-family="Arial" font-size="12" font-weight="700" fill="#e76530">Requieren atención</text>
+    <rect x="1224" y="206" width="336" height="142" rx="22" fill="#0b1729"/>
+    <text x="1252" y="241" font-family="Arial" font-size="12" font-weight="700" fill="#8394aa">META DEL MES</text><text x="1252" y="280" font-family="Arial" font-size="31" font-weight="800" fill="white">74%</text><rect x="1252" y="300" width="268" height="8" rx="4" fill="#20324a"/><rect x="1252" y="300" width="199" height="8" rx="4" fill="url(#green)"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="318" y="378" width="784" height="350" rx="24" fill="#fff"/>
+    <text x="348" y="420" font-family="Arial" font-size="18" font-weight="800" fill="#111d2f">Movimiento de la operación</text>
+    <text x="348" y="446" font-family="Arial" font-size="12" fill="#8190a3">Ingresos y egresos de los últimos 7 días</text>
+    <line x1="356" y1="654" x2="1065" y2="654" stroke="#e6ebf1"/>
+    <line x1="356" y1="584" x2="1065" y2="584" stroke="#e6ebf1"/>
+    <line x1="356" y1="514" x2="1065" y2="514" stroke="#e6ebf1"/>
+    <path d="M372 623 C450 610 470 548 545 566 S667 640 744 548 S872 490 932 526 S1003 478 1060 456" fill="none" stroke="#2b6fff" stroke-width="7" stroke-linecap="round"/>
+    <path d="M372 623 C450 610 470 548 545 566 S667 640 744 548 S872 490 932 526 S1003 478 1060 456 L1060 654 L372 654Z" fill="#2b6fff" opacity=".08"/>
+    <g fill="#2b6fff"><circle cx="372" cy="623" r="7"/><circle cx="545" cy="566" r="7"/><circle cx="744" cy="548" r="7"/><circle cx="932" cy="526" r="7"/><circle cx="1060" cy="456" r="7"/></g>
+    <g font-family="Arial" font-size="11" fill="#8a97aa"><text x="362" y="684">Lun</text><text x="478" y="684">Mar</text><text x="594" y="684">Mié</text><text x="710" y="684">Jue</text><text x="826" y="684">Vie</text><text x="942" y="684">Sáb</text><text x="1044" y="684">Dom</text></g>
+
+    <rect x="1124" y="378" width="436" height="350" rx="24" fill="#fff"/>
+    <text x="1154" y="420" font-family="Arial" font-size="18" font-weight="800" fill="#111d2f">Actividad en vivo</text>
+    <g font-family="Arial">
+      <circle cx="1174" cy="472" r="15" fill="#e5f8f0"/><circle cx="1174" cy="472" r="5" fill="#16b981"/><text x="1204" y="468" font-size="13" font-weight="700" fill="#253348">Pedido #248 entregado</text><text x="1204" y="490" font-size="11" fill="#8290a3">Hace 2 min · Centro</text>
+      <line x1="1154" y1="520" x2="1530" y2="520" stroke="#e8edf3"/>
+      <circle cx="1174" cy="554" r="15" fill="#eaf1ff"/><circle cx="1174" cy="554" r="5" fill="#2b6fff"/><text x="1204" y="550" font-size="13" font-weight="700" fill="#253348">Inventario actualizado</text><text x="1204" y="572" font-size="11" fill="#8290a3">Hace 8 min · Almacén</text>
+      <line x1="1154" y1="602" x2="1530" y2="602" stroke="#e8edf3"/>
+      <circle cx="1174" cy="636" r="15" fill="#fff1e8"/><circle cx="1174" cy="636" r="5" fill="#ff7a3e"/><text x="1204" y="632" font-size="13" font-weight="700" fill="#253348">Pago recibido</text><text x="1204" y="654" font-size="11" fill="#8290a3">Hace 12 min · $4,850</text>
+    </g>
+  </g>
+
+  <rect x="318" y="754" width="1242" height="190" rx="24" fill="#fff" filter="url(#shadow)"/>
+  <text x="348" y="797" font-family="Arial" font-size="18" font-weight="800" fill="#111d2f">Prioridades de hoy</text>
+  <g font-family="Arial">
+    <rect x="348" y="826" width="350" height="86" rx="16" fill="#f6f8fb"/><circle cx="378" cy="869" r="14" fill="#eaf1ff"/><text x="404" y="862" font-size="13" font-weight="800" fill="#253348">Autorizar compra</text><text x="404" y="884" font-size="11" fill="#8290a3">3 solicitudes pendientes</text><text x="661" y="874" font-size="18" fill="#2b6fff">→</text>
+    <rect x="718" y="826" width="350" height="86" rx="16" fill="#f6f8fb"/><circle cx="748" cy="869" r="14" fill="#e5f8f0"/><text x="774" y="862" font-size="13" font-weight="800" fill="#253348">Revisar entregas</text><text x="774" y="884" font-size="11" fill="#8290a3">7 listas para salir</text><text x="1031" y="874" font-size="18" fill="#16b981">→</text>
+    <rect x="1088" y="826" width="442" height="86" rx="16" fill="#0b1729"/><circle cx="1118" cy="869" r="14" fill="#16304d"/><text x="1144" y="862" font-size="13" font-weight="800" fill="white">Generar reporte ejecutivo</text><text x="1144" y="884" font-size="11" fill="#8fa0b6">Información lista para decidir</text><text x="1490" y="874" font-size="18" fill="#64e5b9">→</text>
+  </g>
+</svg>

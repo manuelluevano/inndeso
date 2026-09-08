@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://inndeso.com.mx
+Sitemap: https://inndeso.com.mx/sitemap.xml

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[429],{1429:function(t,e,u){u.d(e,{Ah:function(){return n}});let n="https://wa.me/523312050703?text=Hola%20INNDESO%2C%20quiero%20cotizar%20un%20proyecto"}}]);
