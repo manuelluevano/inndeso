@@ -64,10 +64,32 @@ textarea:focus-visible {
   --inndeso-text: #0b1424;
   --inndeso-muted: #657287;
   --inndeso-line: #dfe5ee;
+  --inndeso-blue-strong: #245fe8;
+  --inndeso-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --inndeso-shadow-sm: 0 14px 34px rgba(12, 29, 54, 0.08);
+  --inndeso-shadow-lg: 0 34px 90px rgba(12, 29, 54, 0.15);
   --inndeso-radius-sm: 12px;
   --inndeso-radius-md: 20px;
   --inndeso-radius-lg: 32px;
 }
+
+[data-track-cta] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+[data-track-cta]::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 32%, rgba(255, 255, 255, .22) 50%, transparent 68%);
+  content: "";
+  transform: translateX(-120%);
+  transition: transform 560ms var(--inndeso-ease);
+}
+
+[data-track-cta]:hover::after { transform: translateX(120%); }
 
 /* Subtle background patterns for sections */
 .bg-dots {
@@ -123,6 +145,8 @@ textarea:focus-visible {
     transform: none !important;
     will-change: auto;
   }
+
+  [data-track-cta]::after { display: none; }
 }
 
 .floating-whatsapp-pulse {

@@ -110,7 +110,7 @@
 .pricing-custom__heading h2 {
   max-width: 840px;
   margin: 0;
-  font-size: clamp(3rem, 5vw, 5.45rem);
+  font-size: clamp(2.8rem, 4.2vw, 4.5rem);
   letter-spacing: -.075em;
   line-height: .92;
 }
@@ -167,7 +167,9 @@
   border: 1px solid rgba(255,255,255,.11);
   border-radius: 18px;
   background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+  transition: transform 220ms var(--inndeso-ease), border-color 220ms ease, background 220ms ease;
 }
+.pricing-custom__types article:hover { transform: translateY(-5px); border-color: rgba(126,164,251,.38); background: linear-gradient(145deg, rgba(47,111,255,.15), rgba(255,255,255,.035)); }
 
 .pricing-custom__types article > span {
   position: absolute;
@@ -231,7 +233,7 @@
 }
 
 .pricing-final-cta span { color: #6eddb8; font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
-.pricing-final-cta h2 { margin: 11px 0 0; font-size: clamp(2.3rem, 3.8vw, 4.1rem); letter-spacing: -.06em; line-height: .97; }
+.pricing-final-cta h2 { margin: 11px 0 0; font-size: clamp(2.3rem, 3.4vw, 3.7rem); letter-spacing: -.06em; line-height: .97; }
 .pricing-final-cta p { max-width: 690px; margin: 16px 0 0; color: #9daabd; font-size: 14px; line-height: 1.65; }
 .pricing-final-cta > a { display: inline-flex; min-height: 57px; padding: 0 22px; align-items: center; gap: 34px; border-radius: 12px; color: white; background: #ff6235; box-shadow: 0 16px 38px rgba(255,98,53,.24); font-size: 12px; font-weight: 850; text-decoration: none; white-space: nowrap; }
 
@@ -252,7 +254,7 @@
   .pricing-web-note > a { grid-column: 2; }
   .pricing-custom { padding: 90px 20px; }
   .pricing-custom__heading { gap: 35px; margin-bottom: 42px; }
-  .pricing-custom__heading h2 { font-size: clamp(3.2rem, 15vw, 4.8rem); }
+  .pricing-custom__heading h2 { font-size: clamp(2.8rem, 12vw, 3.7rem); }
   .pricing-custom__types { grid-template-columns: 1fr; }
   .pricing-custom__types article { min-height: 215px; }
   .pricing-final-cta { gap: 30px; }
@@ -260,5 +262,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pricing-custom__actions a { transition: none; }
+  .pricing-custom__actions a,
+  .pricing-custom__types article { transition: none; }
 }

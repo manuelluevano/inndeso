@@ -72,7 +72,7 @@
   max-width: 610px;
   margin: 18px 0 0;
   color: #071426;
-  font-size: clamp(44px, 3.9vw, 64px);
+  font-size: clamp(40px, 3.5vw, 56px);
   line-height: .94;
   letter-spacing: -.06em;
 }
@@ -111,8 +111,8 @@
 }
 
 .systems-campaign__benefits span { display: grid; gap: 2px; }
-.systems-campaign__benefits strong { color: #17263a; font-size: 13px; }
-.systems-campaign__benefits small { color: #718097; font-size: 11px; }
+.systems-campaign__benefits strong { color: #17263a; font-size: 15px; }
+.systems-campaign__benefits small { color: #718097; font-size: 13px; }
 
 .systems-campaign__actions { margin-top: 36px; display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
 .systems-campaign__actions a { text-decoration: none; font-size: 13px; font-weight: 820; }
@@ -138,7 +138,7 @@
   gap: 18px;
   border-top: 1px solid rgba(23, 38, 58, .12);
   color: #6d7c91;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 720;
 }
 .systems-campaign__proof span { display: inline-flex; align-items: center; gap: 6px; }
@@ -255,7 +255,9 @@
   font-weight: 800;
   cursor: pointer;
   backdrop-filter: blur(12px);
+  transition: transform 180ms ease, color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
+.systems-campaign__switcher button:hover { transform: translateY(-2px); border-color: rgba(47,111,255,.35); color: #245fe8; }
 .systems-campaign__switcher button i { width: 6px; height: 6px; border-radius: 50%; background: #aeb9c7; }
 .systems-campaign__switcher button.is-active { color: #fff; border-color: #2f6fff; background: #2f6fff; }
 .systems-campaign__switcher button.is-active i { background: #8effd4; box-shadow: 0 0 0 4px rgba(142,255,212,.15); }
@@ -279,7 +281,7 @@
 @media (max-width: 700px) {
   .systems-campaign { width: calc(100% - 16px); min-height: auto; margin: 8px auto 88px; border-radius: 24px; }
   .systems-campaign__copy { padding: 38px 20px 0; }
-  .systems-campaign h2 { font-size: 40px; }
+  .systems-campaign h2 { font-size: 38px; }
   .systems-campaign__benefits { grid-template-columns: 1fr 1fr; gap: 13px 8px; }
   .systems-campaign__benefits i { width: 34px; height: 34px; flex-basis: 34px; }
   .systems-campaign__actions { align-items: stretch; flex-direction: column; }

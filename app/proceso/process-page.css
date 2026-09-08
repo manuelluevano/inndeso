@@ -3,7 +3,7 @@
   --muted: #617086;
   --line: #dce3ec;
   --blue: #2f6fff;
-  --orange: #ff6235;
+  --orange: #2f6fff;
   --green: #23c995;
   overflow: hidden;
   color: var(--ink);
@@ -78,7 +78,7 @@
 .process-hero__copy h1 {
   max-width: 760px;
   margin: 0;
-  font-size: clamp(3.35rem, 5.2vw, 6rem);
+  font-size: clamp(3.1rem, 4.6vw, 4.9rem);
   font-weight: 770;
   letter-spacing: -.077em;
   line-height: .91;
@@ -87,7 +87,7 @@
 .process-hero__copy h1 span {
   display: block;
   color: transparent;
-  background: linear-gradient(90deg, #ff744b, #ffb879 78%);
+  background: linear-gradient(90deg, #78a5ff, #50dfb7 78%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -350,7 +350,7 @@
 }
 
 .process-heading .process-kicker { margin-bottom: 18px; }
-.process-heading h2 { margin: 0; font-size: clamp(2.7rem, 4.5vw, 4.9rem); letter-spacing: -.062em; line-height: .96; }
+.process-heading h2 { margin: 0; font-size: clamp(2.6rem, 3.8vw, 4rem); letter-spacing: -.062em; line-height: .96; }
 .process-heading > p { margin: 0 0 6px; color: var(--muted); font-size: 16px; line-height: 1.72; }
 
 .process-phases__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -367,7 +367,10 @@
   border-radius: 25px;
   background: white;
   box-shadow: 0 18px 50px rgba(16,36,65,.055);
+  transition: transform 240ms var(--inndeso-ease), box-shadow 240ms ease, border-color 240ms ease;
 }
+
+.process-phase:hover { transform: translateY(-6px); border-color: #cad7ea; box-shadow: var(--inndeso-shadow-lg); }
 
 .process-phase::before {
   position: absolute;
@@ -387,7 +390,7 @@
 .process-phase header > span { display: grid; width: 43px; height: 43px; place-items: center; border: 1px solid color-mix(in srgb, var(--phase) 25%, white); border-radius: 50%; color: var(--phase); background: color-mix(in srgb, var(--phase) 8%, white); font-size: 11px; font-weight: 900; }
 .process-phase header > small { color: #788599; font-size: 10px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
 
-.process-phase > h3 { max-width: 560px; margin: 55px 0 16px; font-size: clamp(2rem, 3.15vw, 3.35rem); letter-spacing: -.058em; line-height: .98; }
+.process-phase > h3 { max-width: 560px; margin: 55px 0 16px; font-size: clamp(2rem, 2.8vw, 2.8rem); letter-spacing: -.058em; line-height: .98; }
 .process-phase > p { max-width: 620px; margin: 0; color: #5e6b7f; font-size: 15px; line-height: 1.7; }
 
 .process-phase__deliverables { margin-top: 30px; padding: 19px; border: 1px solid #e5e9ef; border-radius: 15px; background: #f7f9fb; }
@@ -414,7 +417,7 @@
     #081221;
 }
 
-.process-clarity__copy h2 { max-width: 660px; margin: 0; font-size: clamp(3rem, 4.7vw, 5rem); letter-spacing: -.066em; line-height: .94; }
+.process-clarity__copy h2 { max-width: 660px; margin: 0; font-size: clamp(2.7rem, 3.9vw, 4rem); letter-spacing: -.066em; line-height: .94; }
 .process-clarity__copy p { max-width: 610px; margin: 28px 0 32px; color: #9ba7b9; font-size: 16px; line-height: 1.74; }
 .process-clarity__copy a { display: inline-flex; align-items: center; gap: 34px; min-height: 54px; padding: 0 21px; border-radius: 11px; color: white; background: var(--orange); font-size: 12px; font-weight: 850; text-decoration: none; }
 
@@ -463,7 +466,7 @@
   background: #eef2f7;
 }
 
-.process-control__intro h2 { max-width: 520px; margin: 0; font-size: clamp(2.7rem, 4.5vw, 4.8rem); letter-spacing: -.068em; line-height: .96; }
+.process-control__intro h2 { max-width: 520px; margin: 0; font-size: clamp(2.6rem, 3.8vw, 3.9rem); letter-spacing: -.068em; line-height: .96; }
 .process-control__items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .process-control__items article { min-height: 225px; padding: 23px; border: 1px solid #dce3ec; border-radius: 17px; background: white; }
 .process-control__items i { display: grid; width: 33px; height: 33px; place-items: center; border: 1px solid #d7deea; border-radius: 50%; color: #2f6fff; font-size: 8px; font-style: normal; font-weight: 900; }
@@ -485,7 +488,7 @@
     #07101f;
 }
 
-.process-final h2 { max-width: 1050px; margin: 0; font-size: clamp(3.1rem, 5.5vw, 6.1rem); letter-spacing: -.07em; line-height: .94; }
+.process-final h2 { max-width: 1050px; margin: 0; font-size: clamp(2.9rem, 4.7vw, 4.8rem); letter-spacing: -.07em; line-height: .94; }
 .process-final > p { max-width: 640px; margin: 28px auto 34px; color: #9daabc; font-size: 16px; line-height: 1.7; }
 .process-final > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 .process-final > div a { display: inline-flex; min-height: 57px; padding: 0 23px; align-items: center; gap: 36px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; color: white; background: rgba(255,255,255,.05); font-size: 12px; font-weight: 850; text-decoration: none; }
@@ -505,7 +508,7 @@
 @media (max-width: 800px) {
   .process-hero { min-height: 0; padding: 86px 20px 0; }
   .process-hero__inner { min-height: 0; }
-  .process-hero__copy h1 { font-size: clamp(3.25rem, 15vw, 5rem); }
+  .process-hero__copy h1 { font-size: clamp(2.8rem, 12vw, 3.8rem); }
   .process-hero__copy > p { font-size: 16px; }
   .process-hero__actions { display: grid; }
   .process-hero__actions a { width: 100%; }
@@ -524,12 +527,12 @@
   .process-phases,
   .process-proof { width: calc(100% - 36px); padding: 90px 0; }
   .process-heading { grid-template-columns: 1fr; gap: 25px; margin-bottom: 42px; }
-  .process-heading h2 { font-size: clamp(2.9rem, 13vw, 4.5rem); }
+  .process-heading h2 { font-size: clamp(2.6rem, 11vw, 3.6rem); }
   .process-phases__grid { grid-template-columns: 1fr; }
   .process-phase { min-height: 510px; padding: 23px; }
   .process-phase > h3 { margin-top: 42px; font-size: 2.35rem; }
   .process-clarity { grid-template-columns: 1fr; padding: 90px 20px; gap: 52px; }
-  .process-clarity__copy h2 { font-size: clamp(3rem, 14vw, 4.7rem); }
+  .process-clarity__copy h2 { font-size: clamp(2.7rem, 12vw, 3.7rem); }
   .process-clarity__row { grid-template-columns: 36px 1fr; }
   .process-clarity__row > b { display: none; }
   .process-proof__grid { grid-template-columns: 1fr; }
@@ -538,7 +541,7 @@
   .process-control__items { grid-template-columns: 1fr; }
   .process-control__items article { min-height: 205px; }
   .process-final { min-height: 560px; padding: 90px 20px; }
-  .process-final h2 { font-size: clamp(3.25rem, 15vw, 5.2rem); }
+  .process-final h2 { font-size: clamp(2.8rem, 12vw, 3.8rem); }
   .process-final > div { display: grid; width: 100%; }
   .process-final > div a { justify-content: space-between; }
 }

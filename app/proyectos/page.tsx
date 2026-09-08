@@ -32,7 +32,7 @@ export default function ProyectosPage() {
             <p className="projects-kicker"><i aria-hidden="true" /> Portafolio de producto</p>
             <h1>Proyectos de software para operaciones reales.</h1>
             <p className="projects-hero__lead">
-              Una selección de plataformas completas para dirigir equipos, seguir rutas, vender, aprender,
+              Una selección de sistemas completos para dirigir equipos, seguir rutas, vender, aprender,
               controlar inventarios y conectar operaciones en tiempo real.
             </p>
             <div className="projects-hero__actions">
@@ -73,8 +73,7 @@ export default function ProyectosPage() {
             <h2 id="casos-title">{caseStudies.length} productos.<br />Mucho más que pantallas.</h2>
           </div>
           <p>
-            Cada caso abre el sistema completo: el problema que resuelve, las plataformas conectadas,
-            sus funciones principales y una galería de la experiencia real.
+            Cada caso explica el problema, las funciones principales y el resultado que el sistema aporta al negocio.
           </p>
         </div>
 
@@ -115,7 +114,7 @@ export default function ProyectosPage() {
                 <h3>{project.name}</h3>
                 <p>{project.headline}</p>
                 <div className="projects-card__footer">
-                  <ul aria-label={`Plataformas de ${project.name}`}>
+                  <ul aria-label={`Funciones destacadas de ${project.name}`}>
                     {project.platforms.slice(0, 3).map((platform) => <li key={platform}>{platform}</li>)}
                   </ul>
                   <Link href={`/proyectos/${project.slug}`} aria-label={`Explorar proyecto ${project.name}`}>Ver caso <span aria-hidden="true">↗</span></Link>

@@ -37,11 +37,15 @@ export default function Footer() {
         <nav className="site-footer__column" aria-label="Soluciones del footer">
           <h3>Soluciones</h3>
           <ul>
-            <li><Link href="/servicios#software">Software a la medida</Link></li>
-            <li><Link href="/servicios#gps">GPS y mapas en vivo</Link></li>
-            <li><Link href="/servicios#apps">Apps multiplataforma</Link></li>
-            <li><Link href="/servicios#ventas">Inventario y ventas</Link></li>
-            <li><Link href="/servicios#infraestructura">Servidores e integraciones</Link></li>
+            <li><Link href="/servicios/paginas-web/">Páginas web profesionales</Link></li>
+            <li><Link href="/servicios/software-a-la-medida-guadalajara/">Software a la medida</Link></li>
+            <li><Link href="/servicios/sistemas-de-inventario-y-ventas/">Inventario y ventas</Link></li>
+            <li><Link href="/servicios/sistema-punto-de-venta/">Punto de venta</Link></li>
+            <li><Link href="/servicios/crm-para-empresas/">CRM y seguimiento</Link></li>
+            <li><Link href="/servicios/desarrollo-de-aplicaciones-moviles/">Aplicaciones móviles</Link></li>
+            <li><Link href="/servicios/gps-y-mapas-en-vivo/">GPS y mapas en vivo</Link></li>
+            <li><Link href="/servicios/control-de-personal/">Control de personal</Link></li>
+            <li><Link href="/servicios/servidores-y-respaldos-para-empresas/">Servidores y respaldos</Link></li>
           </ul>
         </nav>
 
@@ -52,6 +56,8 @@ export default function Footer() {
             <li><Link href="/proyectos/geojornada">Caso GPS en vivo</Link></li>
             <li><Link href="/proyectos/sana-life">Caso de logística</Link></li>
             <li><Link href="/proyectos/cellgo">Caso ecommerce CellGo</Link></li>
+            <li><Link href="/proyectos/sercomin">Caso web industrial Sercomin</Link></li>
+            <li><Link href="/proyectos/fertikhor">Caso web FertiKhor</Link></li>
             <li><Link href="/proyectos/marshop">Caso comercial MarShop</Link></li>
             <li><Link href="/proyectos/libremente">Caso de aprendizaje LibreMente</Link></li>
             <li><Link href="/proyectos/planifica40">Caso financiero Planifica40</Link></li>
@@ -74,7 +80,7 @@ export default function Footer() {
 
       <div className="site-footer__bottom">
         <span>© {year} INNDESO. Desarrollo de software a la medida.</span>
-        <div className="site-footer__bottom-links"><Link href="/precios">Garantía y pagos</Link><a href={`mailto:${contactEmail}?subject=Solicitud%20de%20privacidad`}>Privacidad de datos</a></div>
+        <div className="site-footer__bottom-links"><Link href="/precios">Garantía y pagos</Link><Link href="/privacidad/">Privacidad de datos</Link></div>
       </div>
     </footer>
   );

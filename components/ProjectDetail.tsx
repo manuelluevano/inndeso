@@ -29,6 +29,16 @@ const stories: Record<string, { challenge: string; solution: string; value: stri
     solution: "CellGo conecta una tienda pública para buscar y comprar piezas con un panel interno para administrar inventario, clientes, cotizaciones, ventas, compras y equipos en reparación.",
     value: "El cliente encuentra la pieza correcta con mayor claridad y el equipo conserva el control de la operación desde una sola plataforma.",
   },
+  sercomin: {
+    challenge: "Una empresa industrial necesita explicar con rapidez qué fabrica, qué productos maneja y cómo puede atender una necesidad técnica específica.",
+    solution: "El sitio organiza la oferta en servicios, fabricación y catálogo; añade fichas de producto y coloca el contacto comercial en puntos visibles del recorrido.",
+    value: "Un cliente potencial puede entender la especialidad de Sercomin, revisar opciones y solicitar atención sin navegar entre información dispersa.",
+  },
+  fertikhor: {
+    challenge: "Una marca especializada necesita transmitir experiencia y explicar su oferta sin saturar al visitante con información técnica desde el primer momento.",
+    solution: "El sitio presenta la empresa, su enfoque, sus productos y sus canales de contacto mediante secciones breves, jerarquía visual y navegación directa.",
+    value: "Productores y compradores pueden conocer la propuesta de FertiKhor y encontrar la vía de atención adecuada con menos pasos.",
+  },
   libremente: {
     challenge: "Mejorar la lectura exige constancia, pero las prácticas tradicionales suelen sentirse aisladas y no muestran con claridad cuánto está avanzando cada persona.",
     solution: "LibreMente transforma el aprendizaje en una ruta móvil por niveles: reúne biblioteca, sesiones de lectura, comprensión, vocabulario, gramática, ortografía, metas diarias, puntos, rachas y seguimiento de habilidades.",

@@ -24,6 +24,14 @@ const systems = [
     href: "/proyectos/cellgo",
   },
   {
+    name: "LibreMente",
+    category: "Educación + aprendizaje",
+    image: "/portfolio/libremente/libremente-panel-web-v2.png",
+    alt: "LibreMente con biblioteca, actividades de lectura y seguimiento del progreso",
+    status: "Lectura y aprendizaje en un solo lugar",
+    href: "/proyectos/libremente",
+  },
+  {
     name: "Sana Life",
     category: "Logística + reparto",
     image: "/portfolio/sana-life/mapa-en-vivo-demo.svg",
@@ -88,9 +96,9 @@ export default function SystemsCampaign() {
           <small>Software a la medida</small>
         </div>
 
-        <span className="systems-campaign__kicker">Web · Apps · Escritorio · Servidores</span>
-        <h2 id="systems-campaign-title">Administra tu operación <span>desde cualquier lugar.</span></h2>
-        <p>Centraliza ventas, inventario, clientes, rutas, personal y reportes en un sistema diseñado para la forma real en que trabaja tu empresa.</p>
+        <span className="systems-campaign__kicker">Un programa para toda tu operación</span>
+        <h2 id="systems-campaign-title">Todo tu negocio, <span>bajo control.</span></h2>
+        <p>Reúne ventas, inventario, clientes, rutas, personal y reportes en un sistema claro, hecho para la forma real en que trabaja tu empresa.</p>
 
         <div className="systems-campaign__benefits">
           {benefits.map(([icon, title, detail]) => (
@@ -128,7 +136,7 @@ export default function SystemsCampaign() {
           <div className="systems-campaign__laptop-lid">
             <div className="systems-campaign__laptop-camera" />
             <div className="systems-campaign__laptop-screen">
-              <div className="systems-campaign__window-bar"><i /><i /><i /><span>{system.name} · centro de operaciones</span></div>
+              <div className="systems-campaign__window-bar"><i /><i /><i /><span>{system.name} · resumen del negocio</span></div>
               <div className="systems-campaign__window-view">
                 <Image src={system.image} alt={system.alt} fill sizes="(min-width: 1100px) 54vw, 94vw" />
               </div>
@@ -137,15 +145,19 @@ export default function SystemsCampaign() {
           <div className="systems-campaign__laptop-base"><i /></div>
         </div>
 
-        <div className="systems-campaign__phone systems-campaign__phone--one">
-          <div><Image src="/portfolio/sana-life/venta-movil-demo.svg" alt="Aplicación móvil de ventas y reparto Sana Life" fill sizes="160px" /></div>
-          <small>Sana Life</small>
-        </div>
+        {system.name !== "LibreMente" ? (
+          <>
+            <div className="systems-campaign__phone systems-campaign__phone--one">
+              <div><Image src="/portfolio/sana-life/venta-movil-demo.svg" alt="Aplicación móvil de ventas y reparto Sana Life" fill sizes="160px" /></div>
+              <small>Sana Life</small>
+            </div>
 
-        <div className="systems-campaign__phone systems-campaign__phone--two">
-          <div><Image src="/portfolio/geojornada/evidencia-movil-demo.webp" alt="Aplicación móvil de evidencia GeoJornada" fill sizes="145px" /></div>
-          <small>GeoJornada</small>
-        </div>
+            <div className="systems-campaign__phone systems-campaign__phone--two">
+              <div><Image src="/portfolio/geojornada/evidencia-movil-demo.webp" alt="Aplicación móvil de evidencia GeoJornada" fill sizes="145px" /></div>
+              <small>GeoJornada</small>
+            </div>
+          </>
+        ) : null}
 
         <div className="systems-campaign__switcher" aria-label="Seleccionar sistema principal">
           {systems.map((item, index) => (

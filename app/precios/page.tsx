@@ -37,8 +37,8 @@ export default function PreciosPage() {
           <i aria-hidden="true">≠</i>
           <div>
             <span>COTIZACIÓN PERSONALIZADA</span>
-            <strong>Sistemas, apps e infraestructura</strong>
-            <small>Proyectos que cambian según usuarios, módulos e integraciones.</small>
+            <strong>Programas y aplicaciones a la medida</strong>
+            <small>El precio cambia según las funciones, las personas que lo usan y el alcance.</small>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function PreciosPage() {
 
         <div className="pricing-web-note">
           <i>i</i>
-          <p><strong>Importante:</strong> estos importes no corresponden al desarrollo de un sistema administrativo, aplicación móvil o plataforma especializada.</p>
+          <p><strong>Importante:</strong> estos importes no corresponden al desarrollo de un programa administrativo o una aplicación móvil a la medida.</p>
           <a href="#cotizar-sistema">Necesito un sistema <span aria-hidden="true">↓</span></a>
         </div>
       </section>
@@ -76,7 +76,7 @@ export default function PreciosPage() {
           <div>
             <span className="pricing-custom__kicker"><i /> Software a la medida</span>
             <h2 id="proyectos-medida">¿Necesitas algo más que una página?</h2>
-            <p>Los sistemas se cotizan de forma personalizada porque cada negocio necesita usuarios, reglas, datos e integraciones diferentes. Primero definimos una etapa útil; después te entregamos precio, calendario y alcance por escrito.</p>
+            <p>Los sistemas se cotizan de forma personalizada porque cada negocio trabaja de forma distinta. Primero definimos una etapa útil; después te entregamos precio, calendario y alcance por escrito.</p>
           </div>
           <div className="pricing-custom__actions">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Cotizar un sistema a la medida <span aria-hidden="true">↗</span></a>
@@ -89,14 +89,14 @@ export default function PreciosPage() {
           <article><span>02</span><i>◇</i><h3>Aplicaciones móviles</h3><p>Apps para clientes, trabajadores o equipos en campo.</p></article>
           <article><span>03</span><i>⌖</i><h3>GPS y mapas en vivo</h3><p>Personal, vehículos, rutas, alertas y evidencias.</p></article>
           <article><span>04</span><i>▤</i><h3>Ventas e inventario</h3><p>Productos, compras, caja, cobranza y rentabilidad.</p></article>
-          <article><span>05</span><i>⌘</i><h3>Servidores e integraciones</h3><p>APIs, bases de datos, nube y servidores Linux.</p></article>
-          <article><span>06</span><i>↻</i><h3>Automatización</h3><p>Procesos conectados que reducen captura repetida.</p></article>
+          <article><span>05</span><i>⌘</i><h3>Servidores y conexión de sistemas</h3><p>Tu información protegida, disponible y conectada con las herramientas que ya usas.</p></article>
+          <article><span>06</span><i>↻</i><h3>Tareas automáticas</h3><p>Menos captura repetida y más tiempo para atender el negocio.</p></article>
         </div>
 
         <div className="pricing-custom__quote">
           <div><span>1</span><p><strong>Nos cuentas tu operación</strong><small>No necesitas preparar un documento técnico.</small></p></div>
           <b aria-hidden="true">→</b>
-          <div><span>2</span><p><strong>Definimos la primera etapa</strong><small>Usuarios, funciones, plataformas y prioridades.</small></p></div>
+          <div><span>2</span><p><strong>Definimos la primera etapa</strong><small>Personas, funciones, prioridades y forma de trabajo.</small></p></div>
           <b aria-hidden="true">→</b>
           <div><span>3</span><p><strong>Recibes una propuesta clara</strong><small>Alcance, entregables, calendario, pagos y precio.</small></p></div>
         </div>

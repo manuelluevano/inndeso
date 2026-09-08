@@ -2,8 +2,24 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, services, whatsappUrl } from "@/lib/site-content";
+import { seoServicePages } from "@/lib/seo-services";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import "./services-page.css";
+
+const commercialPages = [
+  {
+    eyebrow: "Páginas web",
+    heading: "Una página profesional que explica, genera confianza y recibe clientes.",
+    description: "Sitios empresariales, páginas de venta, catálogos y experiencias adaptadas a celular.",
+    href: "/servicios/paginas-web/",
+  },
+  ...seoServicePages.map((page) => ({
+    eyebrow: page.eyebrow,
+    heading: page.heading,
+    description: page.description,
+    href: `/servicios/${page.slug}/`,
+  })),
+];
 
 export const metadata: Metadata = {
   title: "Desarrollo de software y apps en Guadalajara",
@@ -197,6 +213,26 @@ export default function ServiciosPage() {
               <a className="services-card__link" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Consultar esta solución <span aria-hidden="true">↗</span></a>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="services-search" aria-labelledby="servicios-por-necesidad">
+        <div className="services-search__inner">
+          <div className="services-section-heading">
+            <div><span className="services-kicker services-kicker--dark">Elige por necesidad</span><h2 id="servicios-por-necesidad">Encuentra rápido lo que tu negocio necesita.</h2></div>
+            <p>Cada página explica en palabras simples qué resuelve la solución, qué puede incluir y, cuando existe, qué proyecto real demuestra esa capacidad.</p>
+          </div>
+          <div className="services-search__grid">
+            {commercialPages.map((page, index) => (
+              <Link href={page.href} key={page.href}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>{page.eyebrow}</small>
+                <h3>{page.heading}</h3>
+                <p>{page.description}</p>
+                <b>Conocer esta solución <i aria-hidden="true">↗</i></b>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

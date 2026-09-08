@@ -18,6 +18,15 @@ const brands = [
   { name: "CellGo", src: "/brands/cellgo.png", slug: "cellgo" },
 ];
 
+const serviceLandingById: Record<string, string> = {
+  software: "/servicios/software-a-la-medida-guadalajara/",
+  gps: "/servicios/gps-y-mapas-en-vivo/",
+  apps: "/servicios/desarrollo-de-aplicaciones-moviles/",
+  ventas: "/servicios/sistemas-de-inventario-y-ventas/",
+  web: "/servicios/paginas-web/",
+  infraestructura: "/servicios/servidores-y-respaldos-para-empresas/",
+};
+
 function SolutionVisual({ kind }: { kind: string }) {
   if (kind === "software") {
     return (
@@ -120,7 +129,7 @@ const softwareShowcase = [
     text: "Prospectos, clientes, oportunidades, actividades y avance de ventas.",
     image: "/portfolio/demos/crm-profesional-demo.svg",
     alt: "Tablero profesional demostrativo de CRM y seguimiento de oportunidades",
-    href: "/servicios#software",
+    href: "/servicios/crm-para-empresas/",
     className: "crm",
   },
   {
@@ -222,7 +231,7 @@ export default function HomeExperience() {
 
         <div className="home-solutions__grid">
           {services.map((service) => (
-            <Link key={service.id} href={`/servicios#${service.id}`} className={`home-solution home-solution--${service.accent}`}>
+            <Link key={service.id} href={serviceLandingById[service.id] ?? `/servicios#${service.id}`} className={`home-solution home-solution--${service.accent}`}>
               <span className="home-solution__number">{service.number}</span>
               <SolutionVisual kind={service.id} />
               <div>
@@ -341,16 +350,16 @@ export default function HomeExperience() {
           <span className="site-kicker site-kicker--light">Todo conectado</span>
           <h2>Un programa central para todo tu negocio.</h2>
           <p>Tu equipo trabaja desde el dispositivo que necesita; la información llega al mismo lugar, se mantiene actualizada y queda lista para decidir.</p>
-          <div className="home-platforms__callout"><i /><span><small>Una sola operación</small><strong>App + web + escritorio + servidor</strong></span></div>
+          <div className="home-platforms__callout"><i /><span><small>Una sola operación</small><strong>Oficina + campo + clientes + dirección</strong></span></div>
         </div>
         <div className="home-platforms__list">
           {[
-            ["01", "Web", "Paneles y plataformas"],
-            ["02", "Windows", "Software de escritorio"],
-            ["03", "macOS", "Aplicaciones nativas"],
-            ["04", "iOS + Android", "Apps móviles"],
-            ["05", "Apple Watch", "Experiencias conectadas"],
-            ["06", "Linux + Cloud", "Servidores e infraestructura"],
+            ["01", "En el navegador", "Consulta y administra desde cualquier equipo"],
+            ["02", "En Windows", "Trabaja desde las computadoras del negocio"],
+            ["03", "En Mac", "Una experiencia rápida y cuidada"],
+            ["04", "En iPhone y Android", "Tu operación también sale a campo"],
+            ["05", "En Apple Watch", "Avisos y acciones importantes a la mano"],
+            ["06", "En tu servidor", "Información protegida y siempre disponible"],
           ].map(([number, title, detail]) => (
             <div key={title} className="home-platform">
               <span>{number}</span>
@@ -391,7 +400,7 @@ export default function HomeExperience() {
                 <h3>{project.name}</h3>
                 <p>{project.headline}</p>
                 <div className="home-case__footer">
-                  <ul aria-label={`Plataformas de ${project.name}`}>
+                  <ul aria-label={`Funciones destacadas de ${project.name}`}>
                     {project.platforms.slice(0, 3).map((platform) => <li key={platform}>{platform}</li>)}
                   </ul>
                   <strong>Explorar caso <span aria-hidden="true">→</span></strong>
@@ -500,12 +509,15 @@ export default function HomeExperience() {
       </section>
 
       <section className="home-final-cta reveal-up">
-        <span className="site-kicker site-kicker--light">Hagámoslo posible</span>
-        <h2>¿Qué parte de tu negocio debería funcionar mejor?</h2>
-        <p>Cuéntanos el problema. Nosotros te ayudamos a convertirlo en una solución clara, útil y lista para crecer.</p>
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-track-cta="true" data-cta-name="home_final_cta" data-cta-location="home_final">
-          Hablar de mi proyecto <span aria-hidden="true">↗</span>
-        </a>
+        <span className="site-kicker site-kicker--light">Tu siguiente paso</span>
+        <h2>Cuéntanos qué parte de tu negocio quieres controlar mejor.</h2>
+        <p>Revisamos tu operación y te proponemos una primera etapa clara, con funciones, tiempo e inversión definidos.</p>
+        <div className="home-final-cta__actions">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" data-track-cta="true" data-cta-name="home_final_cta" data-cta-location="home_final">
+            Cotizar un sistema <span aria-hidden="true">↗</span>
+          </a>
+          <Link href="/proyectos">Ver proyectos reales <span aria-hidden="true">→</span></Link>
+        </div>
       </section>
     </>
   );
