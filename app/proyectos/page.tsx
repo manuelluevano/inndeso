@@ -51,7 +51,7 @@ export default function ProyectosPage() {
               <Image src={caseStudies[3].cover} alt={caseStudies[3].coverAlt} fill priority sizes="(max-width: 900px) 45vw, 22vw" />
             </div>
             <div className="projects-hero__phone">
-              <Image src={caseStudies[4].cover} alt={caseStudies[4].coverAlt} fill priority sizes="(max-width: 900px) 25vw, 10vw" />
+              <Image src="/portfolio/libremente/inicio-anonimo.png" alt="Aplicación móvil educativa LibreMente" fill priority sizes="(max-width: 900px) 25vw, 10vw" />
             </div>
             <span className="projects-hero__live"><i aria-hidden="true" /> GPS y datos conectados</span>
           </div>

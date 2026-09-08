@@ -234,7 +234,7 @@
   box-shadow: 0 15px 34px rgba(16,37,66,.1);
 }
 
-.process-project__image img { object-fit: cover; object-position: left top; }
+.process-project__image img { object-fit: contain; object-position: center; }
 
 .process-review {
   position: absolute;
@@ -440,9 +440,9 @@
 
 .process-proof__card { position: relative; padding: 10px 10px 28px; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: white; box-shadow: 0 16px 45px rgba(16,36,65,.06); }
 .process-proof__card > div { position: relative; height: 310px; margin-bottom: 23px; overflow: hidden; border-radius: 15px; background: #e8edf4; }
-.process-proof__card img { object-fit: cover; object-position: top center; }
+.process-proof__card img { box-sizing: border-box; padding: 10px; object-fit: contain; object-position: center; }
 .process-proof__card--mobile > div { background: radial-gradient(circle at 50% 16%, #d6fff9, transparent 44%), #09263a; }
-.process-proof__card--mobile img { width: 55% !important; height: 94% !important; inset: 3% 22.5% !important; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0,0,0,.25)); }
+.process-proof__card--mobile img { width: 55% !important; height: 94% !important; inset: 3% 22.5% !important; padding: 0; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0,0,0,.25)); }
 .process-proof__card > span,
 .process-proof__card > h3,
 .process-proof__card > p { display: block; margin-right: 14px; margin-left: 14px; }

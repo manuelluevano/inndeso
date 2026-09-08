@@ -52,9 +52,9 @@
 }
 
 .pmc-screen-image {
-  object-fit: cover;
-  object-position: center top;
-  transform: scale(1.06);
+  object-fit: contain;
+  object-position: center;
+  transform: none;
 }
 
 .pmc-control {

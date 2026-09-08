@@ -255,8 +255,8 @@
 }
 
 .services-hero__screen img {
-  object-fit: cover;
-  object-position: left top;
+  object-fit: contain;
+  object-position: center;
 }
 
 .services-hero__phone {
@@ -296,7 +296,7 @@
 }
 
 .services-hero__phone img {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center top;
 }
 
@@ -560,8 +560,8 @@
 }
 
 .services-card__window-screen img {
-  object-fit: cover;
-  object-position: left top;
+  object-fit: contain;
+  object-position: center;
 }
 
 .services-card__media--map .services-card__window-screen img {
@@ -699,7 +699,7 @@
 .services-phone img {
   padding: 6px;
   border-radius: 24px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center top;
 }
 
@@ -909,8 +909,10 @@
 }
 
 .services-work__grid img {
-  object-fit: cover;
-  object-position: center top;
+  box-sizing: border-box;
+  padding: 8px;
+  object-fit: contain;
+  object-position: center;
   transition: transform .45s ease;
 }
 

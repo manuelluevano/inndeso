@@ -172,10 +172,10 @@
 
 .case-card { overflow: hidden; }
 .case-card__visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #dce6f5; }
-.case-card__visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms cubic-bezier(.2,.8,.2,1); }
+.case-card__visual img { width: 100%; height: 100%; box-sizing: border-box; padding: 10px; object-fit: contain; transition: transform 500ms cubic-bezier(.2,.8,.2,1); }
 .case-card:hover .case-card__visual img { transform: scale(1.025); }
 .case-card__visual--mobile { background: radial-gradient(circle at 50% 16%, #d0fcf6, transparent 42%), #09263a; }
-.case-card__visual--mobile img { width: 56%; height: 92%; inset: 4% 22%; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0,0,0,.28)); }
+.case-card__visual--mobile img { width: 56%; height: 92%; inset: 4% 22%; padding: 0; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0,0,0,.28)); }
 .case-card__body { padding: 1.45rem; }
 .case-card__kicker { color: #2868f5; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
 .case-card h2 { margin: 0.65rem 0; font-size: 1.55rem; letter-spacing: -0.04em; }
@@ -228,8 +228,8 @@
 .case-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .case-gallery figure { overflow: hidden; margin: 0; border: 1px solid #dfe5ee; border-radius: 1.5rem; background: white; }
 .case-gallery figure:first-child:last-child { grid-column: 1 / -1; }
-.case-gallery__media { position: relative; overflow: hidden; background: #edf1f6; }
-.case-gallery img { display: block; width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
+.case-gallery__media { position: relative; overflow: hidden; padding: 12px; background: linear-gradient(145deg, #e8edf4, #f8fafc); }
+.case-gallery img { display: block; width: 100%; height: auto; min-height: 0; border-radius: .8rem; object-fit: contain; object-position: center; }
 .case-gallery figcaption { padding: 0.9rem 1rem; color: #5d697c; font-size: 0.82rem; }
 
 .page-shell--libremente .case-detail__hero-media {
@@ -290,7 +290,7 @@
 }
 .case-detail__back { padding-top: 0; }
 .service-landing__visual { overflow: hidden; border: 1px solid #dfe5ee; border-radius: 2rem; background: white; box-shadow: 0 28px 80px rgba(10,25,47,.12); }
-.service-landing__visual img { display: block; width: 100%; height: auto; max-height: 780px; object-fit: cover; object-position: top center; }
+.service-landing__visual img { display: block; width: 100%; height: auto; object-fit: contain; object-position: center; }
 
 @media (max-width: 900px) {
   .page-hero__inner,

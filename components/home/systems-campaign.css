@@ -171,7 +171,7 @@
 .systems-campaign__window-bar i:nth-child(3) { background: #32c77a; }
 .systems-campaign__window-bar span { margin-left: auto; }
 .systems-campaign__window-view { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
-.systems-campaign__window-view img { object-fit: cover; object-position: top center; }
+.systems-campaign__window-view img { object-fit: contain; object-position: center; }
 .systems-campaign__laptop-base { position: relative; width: 112%; height: 22px; margin-left: -6%; border-radius: 2px 2px 18px 18px; background: linear-gradient(180deg, #d4d9df, #8c959f 58%, #606b76); box-shadow: inset 0 2px 1px rgba(255,255,255,.8); }
 .systems-campaign__laptop-base i { position: absolute; top: 0; left: 43%; width: 14%; height: 5px; border-radius: 0 0 7px 7px; background: #7d8791; }
 
@@ -185,7 +185,7 @@
   box-shadow: 0 25px 48px rgba(16, 31, 48, .34), 0 0 0 1px rgba(255,255,255,.5);
 }
 .systems-campaign__phone > div { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 23px; background: #f8fafb; }
-.systems-campaign__phone img { object-fit: cover; object-position: top center; }
+.systems-campaign__phone img { object-fit: contain; object-position: top center; }
 .systems-campaign__phone-island { position: absolute; z-index: 2; top: 13px; left: 50%; width: 40%; height: 13px; transform: translateX(-50%); border-radius: 999px; background: #05070a; }
 .systems-campaign__phone small { position: absolute; z-index: 3; right: 16px; bottom: 16px; padding: 5px 7px; border-radius: 999px; color: #eef4fb; background: rgba(7, 20, 38, .8); font-size: 7px; font-weight: 780; }
 .systems-campaign__phone--one { right: 15%; width: clamp(145px, 11.5vw, 184px); aspect-ratio: .49; transform: rotate(1.7deg); }

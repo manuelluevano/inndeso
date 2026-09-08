@@ -251,7 +251,8 @@
 }
 
 .home-hero__browser-screen img {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .home-hero__phone {
@@ -290,7 +291,7 @@
 }
 
 .home-hero__phone-screen img {
-  object-fit: cover;
+  object-fit: contain;
   object-position: top center;
 }
 
