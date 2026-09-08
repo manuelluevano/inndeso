@@ -7,8 +7,10 @@ const project = caseStudies.find((item) => item.slug === "marshop")!;
 export const metadata: Metadata = {
   title: `${project.name} — Ventas, abonos e inventario para macOS`,
   description: project.summary,
-  alternates: { canonical: "/proyectos/marshop" },
+  alternates: { canonical: "/proyectos/marshop/" },
   openGraph: {
+    type: "website",
+    url: "/proyectos/marshop/",
     title: `${project.name} | INNDESO`,
     description: project.summary,
     images: [project.cover],

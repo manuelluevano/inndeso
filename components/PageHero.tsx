@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import "@/components/site-pages.css";
 
 type PageHeroProps = {
@@ -10,11 +11,14 @@ type PageHeroProps = {
     href: string;
     external?: boolean;
   };
+  breadcrumbs?: Array<{ name: string; path: string }>;
 };
 
-export default function PageHero({ eyebrow, title, description, action }: PageHeroProps) {
+export default function PageHero({ eyebrow, title, description, action, breadcrumbs }: PageHeroProps) {
   return (
-    <section className="page-hero">
+    <>
+      {breadcrumbs ? <BreadcrumbSchema items={breadcrumbs} /> : null}
+      <section className="page-hero">
       <div className="page-hero__glow" aria-hidden="true" />
       <div className="page-hero__inner">
         <div>
@@ -36,6 +40,7 @@ export default function PageHero({ eyebrow, title, description, action }: PageHe
           )
         ) : null}
       </div>
-    </section>
+      </section>
+    </>
   );
 }

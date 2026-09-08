@@ -5,17 +5,24 @@ import { pricePlans, whatsappUrl } from "@/lib/site-content";
 import "./pricing-page.css";
 
 export const metadata: Metadata = {
-  title: "Precios y planes",
-  description: "Páginas web desde $2,500 MXN, sitios profesionales, tiendas en línea y software a la medida con alcance claro.",
-  alternates: { canonical: "/precios" },
+  title: "Precios de páginas web y cotización de software",
+  description: "Consulta precios de páginas web y tiendas en línea. Cotizamos aplicaciones, sistemas administrativos, GPS e infraestructura según el alcance.",
+  alternates: { canonical: "/precios/" },
+  openGraph: {
+    type: "website", url: "/precios/",
+    title: "Precios de páginas web y software a la medida | INNDESO",
+    description: "Planes claros para sitios web y cotizaciones personalizadas para sistemas, apps e infraestructura.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
 };
 
 export default function PreciosPage() {
   return (
     <main className="page-shell">
       <PageHero
+        breadcrumbs={[{ name: "INNDESO", path: "/" }, { name: "Precios", path: "/precios/" }]}
         eyebrow="Precios de páginas web"
-        title="Una inversión clara para comenzar en internet."
+        title="Precios de páginas web y cotización de software a la medida."
         description="Los precios publicados en esta página corresponden a sitios web y tiendas con un alcance inicial definido. Si necesitas un sistema, una app, GPS, inventario o servidor, preparamos una cotización según tu operación."
         action={{ label: "Cotizar un sistema", href: "#cotizar-sistema" }}
       />

@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, services, whatsappUrl } from "@/lib/site-content";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import "./services-page.css";
 
 export const metadata: Metadata = {
-  title: "Soluciones de software",
+  title: "Desarrollo de software y apps en Guadalajara",
   description:
-    "Software a la medida, GPS en vivo, apps, plataformas web, inventario, ventas, servidores e integraciones para empresas.",
-  alternates: { canonical: "/servicios" },
+    "Desarrollo de software, sistemas administrativos, aplicaciones móviles, páginas web y soluciones digitales a la medida para empresas.",
+  alternates: { canonical: "/servicios/" },
+  openGraph: {
+    type: "website", url: "/servicios/",
+    title: "Desarrollo de software y apps en Guadalajara | INNDESO",
+    description: "Soluciones digitales creadas alrededor de las necesidades reales de cada empresa.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
 };
 
 const serviceMedia: Record<
@@ -45,8 +52,8 @@ const serviceMedia: Record<
     kind: "web",
   },
   infraestructura: {
-    alt: "Arquitectura con nube, API, base de datos y servidor Linux",
-    label: "Infraestructura disponible",
+    alt: "Conexión segura entre aplicaciones, información y respaldo del negocio",
+    label: "Información protegida",
     kind: "network",
   },
 };
@@ -88,9 +95,9 @@ function ServiceMedia({ serviceId }: { serviceId: string }) {
           <span className="services-network__line services-network__line--two" />
           <span className="services-network__line services-network__line--three" />
           <div className="services-network__node services-network__node--app"><i>APP</i><strong>Aplicaciones</strong></div>
-          <div className="services-network__node services-network__node--api"><i>API</i><strong>Conexión central</strong></div>
+          <div className="services-network__node services-network__node--api"><i>RED</i><strong>Conexión central</strong></div>
           <div className="services-network__node services-network__node--data"><i>DB</i><strong>Base de datos</strong></div>
-          <div className="services-network__node services-network__node--server"><i>LINUX</i><strong>Servidor</strong></div>
+          <div className="services-network__node services-network__node--server"><i>24/7</i><strong>Respaldo</strong></div>
         </div>
         <span className="services-card__status"><i /> {media.label}</span>
       </div>
@@ -125,13 +132,14 @@ export default function ServiciosPage() {
   return (
     <main className="services-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BreadcrumbSchema items={[{ name: "INNDESO", path: "/" }, { name: "Servicios", path: "/servicios/" }]} />
 
       <section className="services-hero">
         <div className="services-hero__grid" aria-hidden="true" />
         <div className="services-hero__inner">
           <div className="services-hero__copy">
             <span className="services-kicker"><i /> Software conectado de principio a fin</span>
-            <h1>Un sistema para dirigir <span>todo tu negocio.</span></h1>
+            <h1>Desarrollo de software y aplicaciones <span>a la medida.</span></h1>
             <p>
               Unimos ventas, inventario, clientes, personal, rutas, aplicaciones y servidores para que tu equipo trabaje con la misma información.
             </p>
@@ -162,9 +170,9 @@ export default function ServiciosPage() {
         </div>
 
         <div className="services-hero__footer">
-          <span>Una sola arquitectura</span>
+          <span>Una sola operación</span>
           <p>La información entra una vez y se aprovecha en toda la operación.</p>
-          <div><i /> Panel <b>→</b><i /> App <b>→</b><i /> Datos <b>→</b><i /> Servidor</div>
+          <div><i /> Panel <b>→</b><i /> App <b>→</b><i /> Información <b>→</b><i /> Respaldo</div>
         </div>
       </section>
 
@@ -195,7 +203,7 @@ export default function ServiciosPage() {
       <section className="services-architecture">
         <div className="services-architecture__copy">
           <span className="services-kicker">El valor está en la conexión</span>
-          <h2>De la pantalla al servidor. Todo trabaja junto.</h2>
+          <h2>Tu equipo trabaja unido, esté donde esté.</h2>
           <p>Tu cliente puede comprar desde la web, el trabajador actualizar desde su app y administración consultar el resultado en el panel. Una sola operación, sin reconstruir información entre herramientas.</p>
           <Link href="/proceso">Así construimos cada etapa <span aria-hidden="true">→</span></Link>
         </div>
@@ -204,7 +212,7 @@ export default function ServiciosPage() {
           <b>→</b>
           <div><span>02</span><i>APP</i><strong>Equipo</strong><small>Atiende y actualiza</small></div>
           <b>→</b>
-          <div><span>03</span><i>API</i><strong>Sistema</strong><small>Valida y conecta</small></div>
+          <div><span>03</span><i>TODO</i><strong>Sistema</strong><small>Ordena la información</small></div>
           <b>→</b>
           <div><span>04</span><i>DATA</i><strong>Dirección</strong><small>Mide y decide</small></div>
         </div>
@@ -218,7 +226,7 @@ export default function ServiciosPage() {
         <div className="services-work__grid">
           {caseStudies.map((project) => (
             <Link href={`/proyectos/${project.slug}`} key={project.slug}>
-              <div className={project.slug === "libremente" ? "services-work__mobile" : undefined}><Image src={project.cover} alt={project.coverAlt} fill sizes="(max-width:700px) 94vw, 25vw" /></div>
+              <div><Image src={project.cover} alt={project.coverAlt} fill sizes="(max-width:700px) 94vw, 25vw" /></div>
               <span>{project.category}</span><h3>{project.name}</h3><p>{project.headline}</p><i aria-hidden="true">↗</i>
             </Link>
           ))}

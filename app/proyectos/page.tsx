@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudies, services, whatsappUrl } from "@/lib/site-content";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import "./proyectos.css";
 
 export const metadata: Metadata = {
-  title: "Proyectos y casos de software",
-  description: "Conoce sistemas reales de GPS en vivo, logística, talleres, ventas, inventarios, aplicaciones y operación empresarial.",
-  alternates: { canonical: "/proyectos" },
+  title: "Proyectos de software y apps desarrollados",
+  description: "Conoce sistemas, aplicaciones, plataformas y soluciones de software desarrolladas por INNDESO para operaciones reales.",
+  alternates: { canonical: "/proyectos/" },
+  openGraph: {
+    type: "website", url: "/proyectos/",
+    title: "Proyectos de software y apps desarrollados | INNDESO",
+    description: "Sistemas y aplicaciones desarrollados para resolver necesidades reales de empresas.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
 };
 
 export default function ProyectosPage() {
@@ -15,6 +22,7 @@ export default function ProyectosPage() {
 
   return (
     <main className="projects-index">
+      <BreadcrumbSchema items={[{ name: "INNDESO", path: "/" }, { name: "Proyectos", path: "/proyectos/" }]} />
       <section className="projects-hero">
         <div className="projects-hero__orb projects-hero__orb--one" aria-hidden="true" />
         <div className="projects-hero__orb projects-hero__orb--two" aria-hidden="true" />
@@ -22,7 +30,7 @@ export default function ProyectosPage() {
         <div className="projects-hero__inner">
           <div className="projects-hero__copy">
             <p className="projects-kicker"><i aria-hidden="true" /> Portafolio de producto</p>
-            <h1>Software que ya se siente como parte del negocio.</h1>
+            <h1>Proyectos de software para operaciones reales.</h1>
             <p className="projects-hero__lead">
               Una selección de plataformas completas para dirigir equipos, seguir rutas, vender, aprender,
               controlar inventarios y conectar operaciones en tiempo real.
@@ -94,7 +102,7 @@ export default function ProyectosPage() {
 
         <div className="projects-editorial-grid">
           {projects.map((project, index) => (
-            <article className={`projects-card projects-card--${project.theme} ${project.slug === "libremente" ? "projects-card--mobile" : ""}`} key={project.slug}>
+            <article className={`projects-card projects-card--${project.theme}`} key={project.slug}>
               <div className="projects-card__topline">
                 <span>0{index + 2}</span>
                 <span>{project.category}</span>

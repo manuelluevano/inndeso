@@ -1,22 +1,40 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Suspense } from "react";
-import Script from "next/script";
 
 import HomeHero from "@/components/home/HomeHero";
 import HomeExperience from "@/components/home/HomeExperience";
 
 export const dynamic = "force-static";
 
+export const metadata: Metadata = {
+  title: { absolute: "Desarrollo de software a la medida en Guadalajara | INNDESO" },
+  description:
+    "Desarrollamos software a la medida, aplicaciones móviles, sistemas administrativos, GPS y plataformas web para empresas en Guadalajara y México.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Desarrollo de software a la medida en Guadalajara | INNDESO",
+    description: "Creamos sistemas, aplicaciones y plataformas digitales para empresas que necesitan optimizar sus operaciones.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Desarrollo de software a la medida en Guadalajara | INNDESO",
+    description: "Sistemas, aplicaciones, GPS y plataformas web para operar mejor.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
+};
+
 const SITE_URL = "https://inndeso.com.mx";
 
 const HOMEPAGE_WEBPAGE_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "INNDESO | Desarrollo de software y páginas web a la medida",
+  name: "Desarrollo de software a la medida en Guadalajara | INNDESO",
   url: SITE_URL,
   description:
-    "Desarrollo de páginas web, tiendas en línea, apps móviles y sistemas internos en México. Equipo senior que entrega rápido y con calidad.",
+    "Software a la medida, aplicaciones móviles, sistemas administrativos, GPS y plataformas web para empresas en Guadalajara y México.",
   publisher: {
     "@type": "Organization",
     name: "INNDESO",
@@ -32,10 +50,9 @@ const HOMEPAGE_WEBPAGE_JSON_LD = {
 export default function Home() {
   return (
     <>
-      <Script
+      <script
         id="homepage-webpage-schema"
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(HOMEPAGE_WEBPAGE_JSON_LD) }}
       />
 

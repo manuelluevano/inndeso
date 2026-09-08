@@ -61,12 +61,12 @@ export default function HomeHero() {
           </div>
 
           <h1 id="home-hero-title">
-            Tu negocio puede operar <span>mejor.</span>
+            Desarrollo de software a la medida <span>para operar mejor.</span>
           </h1>
 
           <p className="home-hero__lead">
-            Diseñamos software a la medida que conecta personas, procesos y datos: desde una app móvil hasta el panel,
-            el GPS en vivo y el servidor que sostiene toda la operación.
+            Diseñamos sistemas, aplicaciones móviles, plataformas web, GPS e infraestructura para empresas en
+            Guadalajara y México.
           </p>
 
           <div className="home-hero__actions">
@@ -132,7 +132,6 @@ export default function HomeHero() {
           </div>
 
           <div className="home-hero__phone" aria-hidden="true">
-            <div className="home-hero__phone-speaker" />
             <div className="home-hero__phone-screen">
               <Image
                 src={system.phone}

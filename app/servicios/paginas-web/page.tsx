@@ -4,9 +4,15 @@ import PageHero from "@/components/PageHero";
 import { whatsappUrl } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Páginas web profesionales",
-  description: "Páginas web rápidas, claras y optimizadas para presentar tu empresa, generar confianza y convertir visitas en contactos.",
-  alternates: { canonical: "/servicios/paginas-web" },
+  title: "Diseño y desarrollo de páginas web en Guadalajara",
+  description: "Diseñamos y desarrollamos páginas web profesionales, rápidas y adaptadas a dispositivos móviles para empresas en Guadalajara y México.",
+  alternates: { canonical: "/servicios/paginas-web/" },
+  openGraph: {
+    type: "website", url: "/servicios/paginas-web/",
+    title: "Diseño y desarrollo de páginas web en Guadalajara | INNDESO",
+    description: "Páginas web profesionales para empresas que buscan una presencia digital moderna y confiable.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
 };
 
 const included = ["Estructura y mensajes comerciales", "Diseño adaptable a celular", "WhatsApp y formulario", "SEO técnico esencial", "Medición de contactos", "Publicación y capacitación"];
@@ -14,7 +20,7 @@ const included = ["Estructura y mensajes comerciales", "Diseño adaptable a celu
 export default function PaginasWebPage() {
   return (
     <main className="page-shell">
-      <PageHero eyebrow="Sitios que convierten" title="Tu empresa debe verse tan profesional como trabaja." description="Diseñamos páginas rápidas, claras y preparadas para que una visita entienda qué haces, confíe y sepa cómo contactarte." action={{ label: "Cotizar mi página", href: whatsappUrl, external: true }} />
+      <PageHero breadcrumbs={[{ name: "INNDESO", path: "/" }, { name: "Servicios", path: "/servicios/" }, { name: "Páginas web", path: "/servicios/paginas-web/" }]} eyebrow="Sitios que convierten" title="Páginas web profesionales que convierten visitas en clientes." description="Diseñamos páginas rápidas, claras y preparadas para que una visita entienda qué haces, confíe y sepa cómo contactarte." action={{ label: "Cotizar mi página", href: whatsappUrl, external: true }} />
       <section className="page-section">
         <div className="service-landing__visual"><Image src="/portfolio/FERTIKHOR/fertikhor-1.png" alt="Ejemplo de sitio web empresarial desarrollado por INNDESO" width={1800} height={1050} priority /></div>
       </section>

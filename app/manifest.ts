@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'INNDESO',
     short_name: 'INNDESO',
-    description: 'Software a la medida, GPS en vivo, apps multiplataforma, web, sistemas empresariales y servidores.',
+    description: 'Software a la medida, aplicaciones, GPS, páginas web y sistemas para empresas.',
     start_url: '/',
     lang: 'es',
     display: 'standalone',

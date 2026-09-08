@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { whatsappUrl } from "@/lib/site-content";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import "./process-page.css";
 
 export const metadata: Metadata = {
-  title: "Cómo desarrollamos tu software",
-  description: "Un proceso claro para diagnosticar, diseñar, desarrollar, probar, lanzar y acompañar software a la medida.",
-  alternates: { canonical: "/proceso" },
+  title: "Proceso de desarrollo de software a la medida",
+  description: "Conoce el proceso de INNDESO para analizar, diseñar, desarrollar, probar y lanzar software a la medida con alcance claro y entregas funcionales.",
+  alternates: { canonical: "/proceso/" },
+  openGraph: {
+    type: "website", url: "/proceso/",
+    title: "Proceso de desarrollo de software a la medida | INNDESO",
+    description: "De una necesidad de negocio a un sistema funcional, probado y listo para operar.",
+    images: ["/visuals/oficina-software-inndeso.png"],
+  },
 };
 
 const phases = [
@@ -43,7 +50,7 @@ const phases = [
     label: "Construir",
     title: "Desarrollo por entregas",
     description: "Programamos en bloques funcionales. Puedes revisar avances reales, no solo porcentajes o reportes técnicos difíciles de comprobar.",
-    deliverables: ["Módulos utilizables", "Backend e integraciones", "Revisiones periódicas"],
+    deliverables: ["Funciones utilizables", "Información conectada", "Revisiones periódicas"],
     approval: "Cada entrega se demuestra y se valida.",
     accent: "green",
   },
@@ -105,13 +112,14 @@ export default function ProcesoPage() {
   return (
     <main className="process-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BreadcrumbSchema items={[{ name: "INNDESO", path: "/" }, { name: "Proceso", path: "/proceso/" }]} />
 
       <section className="process-hero">
         <div className="process-hero__grid" aria-hidden="true" />
         <div className="process-hero__inner">
           <div className="process-hero__copy">
             <span className="process-kicker"><i /> Cómo trabajamos</span>
-            <h1>De una idea confusa a un sistema que <span>tu equipo sí usa.</span></h1>
+            <h1>Así desarrollamos software a la medida que <span>tu equipo sí usa.</span></h1>
             <p>Primero entendemos la operación. Después diseñamos, construimos y demostramos cada avance hasta convertirlo en una herramienta lista para trabajar.</p>
             <div className="process-hero__actions">
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Platicar mi proyecto <span aria-hidden="true">↗</span></a>

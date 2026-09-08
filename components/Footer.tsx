@@ -67,7 +67,7 @@ export default function Footer() {
             <li><a href={`mailto:${contactEmail}`}>{contactEmail}</a></li>
             <li><a href="https://www.instagram.com/inndeso_mx/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             <li><a href="https://www.facebook.com/profile.php?id=61578554534142" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><span>Guadalajara, Jalisco</span></li>
+            <li><span>Guadalajara, Jalisco, México</span></li>
           </ul>
         </div>
       </div>

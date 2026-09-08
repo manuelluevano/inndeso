@@ -32,11 +32,11 @@ export const metadata: Metadata = {
     email: false,
   },
   title: {
-    default: "INNDESO | Desarrollo de software a la medida",
+    default: "Desarrollo de software a la medida en Guadalajara | INNDESO",
     template: "%s | INNDESO",
   },
   description:
-    "Desarrollo de software a la medida en México: GPS y mapas en vivo, apps iOS y Android, sistemas para Windows y macOS, plataformas web, ventas, inventario y servidores Linux.",
+    "Desarrollamos software a la medida, aplicaciones móviles, sistemas administrativos, GPS, plataformas web e infraestructura para empresas en Guadalajara y México.",
   keywords: [
     "desarrollo de software",
     "aplicaciones web",
@@ -46,14 +46,8 @@ export const metadata: Metadata = {
     "software para Windows",
     "aplicaciones macOS",
     "Apple Watch",
-    "APIs",
-    "integraciones",
-    "DevOps",
-    "cloud",
-    "Next.js",
-    "Node.js",
-    "React",
-    "NestJS",
+    "servidores Linux",
+    "integraciones empresariales",
     "páginas web profesionales",
     "tiendas en línea en México",
     "sistemas a la medida",
@@ -61,33 +55,29 @@ export const metadata: Metadata = {
     "desarrollo de software Guadalajara",
   ],
   category: "technology",
-  alternates: {
-    canonical: "/",
-    languages: { es: "/" },
-  },
   openGraph: {
     type: "website",
     url: "/",
     siteName: "INNDESO",
-    title: "INNDESO | Desarrollo de software a la medida",
+    title: "Desarrollo de software a la medida en Guadalajara | INNDESO",
     description:
-      "Software que mueve operaciones reales: GPS en vivo, apps, sistemas empresariales, plataformas web y servidores.",
+      "Software, aplicaciones y sistemas a la medida para empresas en Guadalajara y México.",
     images: [
       {
-        url: "/INNDESO.jpg",
-        width: 1024,
-        height: 1024,
-        alt: "INNDESO - Desarrollo de software",
+        url: "/visuals/oficina-software-inndeso.png",
+        width: 1672,
+        height: 941,
+        alt: "INNDESO — desarrollo de software y aplicaciones a la medida",
       },
     ],
     locale: "es_MX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "INNDESO | Software que mueve operaciones reales",
+    title: "Desarrollo de software a la medida en Guadalajara | INNDESO",
     description:
-      "GPS en vivo, aplicaciones, inventarios, ventas, finanzas, web, integraciones y servidores.",
-    images: ["/INNDESO.jpg"],
+      "Software, aplicaciones y sistemas a la medida para empresas.",
+    images: ["/visuals/oficina-software-inndeso.png"],
   },
   robots: {
     index: true,
@@ -103,6 +93,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icono.png",
     shortcut: "/icono.png",
+    apple: "/icono.png",
   },
   verification: GOOGLE_SITE_VERIFICATION
     ? {
@@ -126,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 
   return (
-    <html lang="es">
+    <html lang="es-MX">
       <head>
         {GTM_ID && (
           <Script

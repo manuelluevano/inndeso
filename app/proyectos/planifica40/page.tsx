@@ -7,8 +7,10 @@ const project = caseStudies.find((item) => item.slug === "planifica40")!;
 export const metadata: Metadata = {
   title: `${project.name} — Cálculo y planeación de pensiones`,
   description: project.summary,
-  alternates: { canonical: "/proyectos/planifica40" },
+  alternates: { canonical: "/proyectos/planifica40/" },
   openGraph: {
+    type: "website",
+    url: "/proyectos/planifica40/",
     title: `${project.name} | INNDESO`,
     description: project.summary,
     images: [project.cover],

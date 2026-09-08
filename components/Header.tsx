@@ -83,7 +83,7 @@ const Header = () => {
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="site-header__social site-header__social--whatsapp" aria-label="WhatsApp de INNDESO">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0 12 12 0 0 0 1.6 18L0 24l6.2-1.6A12 12 0 0 0 24 12c0-3.2-1.2-6.2-3.5-8.5Zm-8.5 18a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 1 1 12 21.5Zm5.5-7.7c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.2l-.8 1c-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.6-3.2-.3-.5.3-.4.8-1.5.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.6c.2.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3Z" className="is-fill"/></svg>
           </a>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="site-header__cta" data-track-cta="true" data-cta-name="whatsapp_header" data-cta-location="header">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="site-header__cta" aria-label="Contactar a INNDESO por WhatsApp" data-track-cta="true" data-cta-name="whatsapp_header" data-cta-location="header">
             Hablemos <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -99,7 +99,7 @@ const Header = () => {
             {item.label}
           </Link>
         ))}
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="site-header__mobile-cta" onClick={() => setOpenMenu(false)}>
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="site-header__mobile-cta" aria-label="Contactar a INNDESO por WhatsApp" onClick={() => setOpenMenu(false)}>
           Cuéntanos tu proyecto
         </a>
         <div className="site-header__mobile-social">

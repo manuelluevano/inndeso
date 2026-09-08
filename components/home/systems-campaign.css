@@ -179,14 +179,12 @@
   position: absolute;
   z-index: 4;
   bottom: 86px;
-  padding: 7px;
   border-radius: 30px;
-  background: #070a0e;
-  box-shadow: 0 25px 48px rgba(16, 31, 48, .34), 0 0 0 1px rgba(255,255,255,.5);
+  background: transparent;
+  filter: drop-shadow(0 25px 24px rgba(16, 31, 48, .34));
 }
-.systems-campaign__phone > div { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 23px; background: #f8fafb; }
+.systems-campaign__phone > div { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 30px; background: transparent; }
 .systems-campaign__phone img { object-fit: contain; object-position: top center; }
-.systems-campaign__phone-island { position: absolute; z-index: 2; top: 13px; left: 50%; width: 40%; height: 13px; transform: translateX(-50%); border-radius: 999px; background: #05070a; }
 .systems-campaign__phone small { position: absolute; z-index: 3; right: 16px; bottom: 16px; padding: 5px 7px; border-radius: 999px; color: #eef4fb; background: rgba(7, 20, 38, .8); font-size: 7px; font-weight: 780; }
 .systems-campaign__phone--one { right: 15%; width: clamp(145px, 11.5vw, 184px); aspect-ratio: .49; transform: rotate(1.7deg); }
 .systems-campaign__phone--two { right: 1.5%; width: clamp(127px, 10vw, 158px); aspect-ratio: .49; bottom: 68px; transform: rotate(4deg); }

@@ -138,13 +138,11 @@ export default function SystemsCampaign() {
         </div>
 
         <div className="systems-campaign__phone systems-campaign__phone--one">
-          <span className="systems-campaign__phone-island" />
           <div><Image src="/portfolio/sana-life/venta-movil-demo.svg" alt="Aplicación móvil de ventas y reparto Sana Life" fill sizes="160px" /></div>
           <small>Sana Life</small>
         </div>
 
         <div className="systems-campaign__phone systems-campaign__phone--two">
-          <span className="systems-campaign__phone-island" />
           <div><Image src="/portfolio/geojornada/evidencia-movil-demo.webp" alt="Aplicación móvil de evidencia GeoJornada" fill sizes="145px" /></div>
           <small>GeoJornada</small>
         </div>

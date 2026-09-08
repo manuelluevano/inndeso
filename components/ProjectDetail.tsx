@@ -56,14 +56,14 @@ export default function ProjectDetail({ slug }: { slug: string }) {
   return (
     <main className={`page-shell page-shell--${project.slug}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <PageHero eyebrow={project.category} title={project.headline} description={project.summary} action={{ label: "Ver todos los proyectos", href: "/proyectos" }} />
+      <PageHero breadcrumbs={[{ name: "INNDESO", path: "/" }, { name: "Proyectos", path: "/proyectos/" }, { name: project.name, path: `/proyectos/${project.slug}/` }]} eyebrow={project.category} title={project.headline} description={project.summary} action={{ label: "Ver todos los proyectos", href: "/proyectos" }} />
 
       <section className="page-section reveal-up">
         <div className="case-detail__hero-media"><Image src={project.cover} alt={project.coverAlt} width={1800} height={1050} priority /></div>
         <div className="case-detail__facts">
           <div className="case-fact"><span>Proyecto</span><strong>{project.name}</strong></div>
           <div className="case-fact"><span>Enfoque</span><strong>{project.descriptor}</strong></div>
-          <div className="case-fact"><span>Plataformas</span><strong>{project.platforms.join(" · ")}</strong></div>
+          <div className="case-fact"><span>Dónde funciona</span><strong>{project.platforms.join(" · ")}</strong></div>
           <div className="case-fact"><span>Alcance</span><strong>{project.capabilities.length} capacidades clave</strong></div>
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
 
       <section className="page-section reveal-up">
         <div className="page-cta">
-          <div><h2>¿Quieres una solución con esta capacidad?</h2><p>Diseñamos la combinación de funciones, plataformas e infraestructura que necesita la operación real de tu empresa.</p></div>
+          <div><h2>¿Quieres resolver algo parecido en tu negocio?</h2><p>Diseñamos las funciones y herramientas que necesita tu equipo para trabajar con más orden, control y claridad.</p></div>
           <a className="page-button page-button--light" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Hablar de mi sistema <span aria-hidden="true">↗</span></a>
         </div>
       </section>

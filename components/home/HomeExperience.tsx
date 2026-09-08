@@ -93,15 +93,15 @@ function SolutionVisual({ kind }: { kind: string }) {
 
   return (
     <div className="solution-preview solution-preview--infra" aria-hidden="true">
-      <div className="solution-preview__top"><span><i /> Infraestructura</span><b>Disponible</b></div>
+      <div className="solution-preview__top"><span><i /> Protección y respaldo</span><b>Disponible</b></div>
       <div className="solution-preview__network">
         <span className="network-line network-line--one" /><span className="network-line network-line--two" /><span className="network-line network-line--three" />
         <div className="network-node network-node--cloud">Nube</div>
-        <div className="network-node network-node--api">API</div>
+        <div className="network-node network-node--api">Conexión</div>
         <div className="network-node network-node--data">Datos</div>
         <div className="network-node network-node--server">Servidor</div>
       </div>
-      <small>API, base de datos, nube y servidor local conectados</small>
+      <small>Aplicaciones, información y respaldo trabajando juntos</small>
     </div>
   );
 }
@@ -216,7 +216,7 @@ export default function HomeExperience() {
             <h2>Centraliza tu negocio.<br />Conecta toda la operación.</h2>
           </div>
           <p>
-            Vende, administra, da seguimiento y decide con la misma información. Construimos el programa central que conecta web, apps, GPS, datos e infraestructura.
+            Vende, administra, da seguimiento y decide con la misma información. Construimos un programa central para que todas las áreas trabajen juntas.
           </p>
         </div>
 
@@ -235,7 +235,7 @@ export default function HomeExperience() {
           ))}
         </div>
         <div className="home-solutions__promise">
-          <div><span>Una sola arquitectura</span><strong>Panel administrativo + app + datos + infraestructura</strong></div>
+          <div><span>Una sola operación</span><strong>Panel + aplicaciones + información + respaldo</strong></div>
           <Link href="/servicios">Ver el ecosistema completo <span aria-hidden="true">→</span></Link>
         </div>
       </section>
@@ -369,7 +369,7 @@ export default function HomeExperience() {
           </div>
           <div className="home-cases__intro">
             <p>
-              No presentamos conceptos aislados. Abre cada caso para conocer el producto, las plataformas conectadas y la operación que resuelve.
+              Abre cada caso para entender rápidamente qué problema resolvimos, cómo funciona el producto y qué puede hacer por un negocio.
             </p>
             <div><strong>{String(caseStudies.length).padStart(2, "0")}</strong><span>productos<br />para explorar</span><i aria-hidden="true" /></div>
           </div>
@@ -382,7 +382,7 @@ export default function HomeExperience() {
                 <div><b>{String(index + 1).padStart(2, "0")}</b><span>{project.category}</span></div>
                 <i aria-hidden="true">↗</i>
               </div>
-              <div className={`home-case__media ${project.slug === "libremente" ? "home-case__media--mobile" : ""}`}>
+              <div className="home-case__media">
                 <Image src={project.cover} alt={project.coverAlt} fill sizes="(min-width: 1100px) 45vw, (min-width: 700px) 48vw, 94vw" />
                 <span className="home-case__preview">Vista del producto</span>
               </div>
@@ -463,7 +463,7 @@ export default function HomeExperience() {
 
             <details>
               <summary><span>03</span><strong>¿Cuánto cuesta desarrollar un sistema o una app?</strong><i aria-hidden="true" /></summary>
-              <div className="home-faq__answer"><p>Depende del flujo, los usuarios, plataformas e integraciones. Primero definimos una etapa útil y medible; después presentamos funciones, calendario, entregables y precio. Aplicaciones, GPS, inventarios y servidores se pueden dividir por módulos para controlar la inversión.</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Solicitar una estimación inicial →</a></div>
+              <div className="home-faq__answer"><p>Depende de cuántas personas lo usarán, qué tareas debe resolver y dónde necesita funcionar. Primero definimos una etapa útil; después presentamos funciones, calendario, entregables y precio. El proyecto puede dividirse en etapas para controlar la inversión.</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Solicitar una estimación inicial →</a></div>
             </details>
 
             <details>
@@ -488,7 +488,7 @@ export default function HomeExperience() {
 
             <details>
               <summary><span>08</span><strong>¿Pueden mejorar o conectar un sistema que ya existe?</strong><i aria-hidden="true" /></summary>
-              <div className="home-faq__answer"><p>Sí. Primero revisamos tecnología, código disponible, base de datos, accesos y riesgos. Podemos rediseñar pantallas, crear módulos, conectar APIs, migrar información o construir una nueva etapa sin reemplazar lo que todavía funciona.</p></div>
+              <div className="home-faq__answer"><p>Sí. Primero revisamos cómo funciona, qué información conserva y qué problemas presenta. Podemos mejorar las pantallas, agregar funciones, conectar otras herramientas o construir una nueva etapa sin reemplazar lo que todavía funciona.</p></div>
             </details>
 
             <details>

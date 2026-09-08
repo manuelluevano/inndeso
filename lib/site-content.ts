@@ -48,8 +48,8 @@ export const services: Service[] = [
     number: "03",
     title: "Apps para cada dispositivo",
     short: "Tu equipo trabaja donde lo necesita, con los mismos datos.",
-    description: "Creamos aplicaciones para iOS, Android, Windows y macOS, conectadas con el mismo backend y los mismos datos.",
-    capabilities: ["iOS y Android", "Windows y macOS", "Apple Watch", "Modo offline y sincronización"],
+    description: "Creamos aplicaciones para iPhone, Android, Windows y Mac para que cada persona trabaje desde el dispositivo que ya utiliza.",
+    capabilities: ["iPhone y Android", "Windows y Mac", "Apple Watch", "Trabajo incluso sin conexión"],
     accent: "violet",
   },
   {
@@ -73,10 +73,10 @@ export const services: Service[] = [
   {
     id: "infraestructura",
     number: "06",
-    title: "Infraestructura que sostiene todo",
-    short: "Datos, sistemas y servicios disponibles cuando se necesitan.",
-    description: "Implementamos APIs, bases de datos, servidores Linux, nube e instalaciones locales para negocios que requieren control propio.",
-    capabilities: ["APIs e integraciones", "Bases de datos", "Linux y nube", "Servidores en sitio"],
+    title: "Servidores y respaldo para tu negocio",
+    short: "Tu información segura y disponible cuando tu equipo la necesita.",
+    description: "Preparamos la parte que mantiene tu sistema disponible, protegido y conectado, ya sea en internet o en un servidor dentro de tu negocio.",
+    capabilities: ["Información centralizada", "Respaldo y seguridad", "Acceso desde internet", "Servidor en tu negocio"],
     accent: "green",
   },
 ];
@@ -92,7 +92,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/geojornada/mapa-operativo-demo.webp",
     coverAlt: "Panel GeoJornada con mapa operativo y trabajador en tiempo real",
     theme: "navy",
-    platforms: ["Web", "iOS", "Android", "SignalR", "Mapas"],
+    platforms: ["Panel web", "App móvil", "Mapa en vivo", "Personal en campo"],
     capabilities: ["Mapa operativo en vivo", "Jornadas y recorridos", "Evidencias de campo", "Historial y alertas", "App del trabajador"],
     gallery: [
       { src: "/portfolio/geojornada/mapa-operativo-demo.webp", alt: "Mapa operativo GeoJornada", label: "Centro de control" },
@@ -112,7 +112,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/sana-life/mapa-en-vivo-demo.svg",
     coverAlt: "Panel demostrativo de Sana Life con repartidores y rutas en vivo",
     theme: "green",
-    platforms: ["Web", "iOS", "Android", "GPS", "Linux"],
+    platforms: ["Panel web", "App móvil", "Rutas", "Reparto en vivo"],
     capabilities: ["Planeación de rutas", "Repartidores en vivo", "Inventario por unidad", "Venta y cobro móvil", "Métricas y corte de caja"],
     gallery: [
       { src: "/portfolio/sana-life/mapa-en-vivo-demo.svg", alt: "Mapa demostrativo de repartidores en vivo de Sana Life", label: "Operación en vivo" },
@@ -132,7 +132,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/movilsource/taller-demo.webp",
     coverAlt: "Tablero demostrativo del taller MovilSource",
     theme: "orange",
-    platforms: ["macOS", "SwiftUI", "API REST", "PDF"],
+    platforms: ["Aplicación para Mac", "Taller", "Inventario", "Reportes"],
     capabilities: ["Recepción y taller", "Cotizador inteligente", "Inventario y accesorios", "Caja y finanzas", "Reportes y alertas"],
     gallery: [
       { src: "/portfolio/movilsource/taller-demo.webp", alt: "Tablero del taller", label: "Taller" },
@@ -153,7 +153,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/marshop/productos-demo.png",
     coverAlt: "Catálogo demostrativo de MarShop con productos, fotografías, precios, utilidad y existencias",
     theme: "orange",
-    platforms: ["macOS", "SwiftUI", "Datos locales", "PDF", "Notificaciones"],
+    platforms: ["Aplicación para Mac", "Ventas", "Abonos", "Inventario", "Reportes"],
     capabilities: ["Catálogo visual e inventario", "Expedientes de clientas", "Ventas y planes de abonos", "Agenda de cobros", "Caja, gastos y utilidad", "Tickets y reportes PDF"],
     gallery: [
       { src: "/portfolio/marshop/acceso-demo.png", alt: "Pantalla de acceso segura de MarShop", label: "Acceso local" },
@@ -174,7 +174,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/cellgo/panel-administrativo.png",
     coverAlt: "Panel administrativo de CellGo con ventas, inventario, reparaciones y clientes",
     theme: "green",
-    platforms: ["Web", "Ecommerce", "Panel administrativo", "API", "Reportes"],
+    platforms: ["Tienda en línea", "Panel del negocio", "Inventario", "Taller", "Reportes"],
     capabilities: ["Catálogo y ofertas", "Compatibilidad de refacciones", "Ventas e inventario", "Reparaciones y cotizaciones", "Clientes y reportes"],
     gallery: [
       { src: "/portfolio/cellgo/panel-administrativo.png", alt: "Panel administrativo de CellGo", label: "Centro de operación" },
@@ -193,12 +193,13 @@ export const caseStudies: CaseStudy[] = [
     category: "Educación + app móvil",
     headline: "Aprender a leer mejor, un ejercicio a la vez.",
     summary: "Una aplicación educativa con una experiencia de avance por niveles para fortalecer lectura, comprensión, vocabulario, gramática y ortografía mediante prácticas breves, metas y seguimiento personal.",
-    cover: "/portfolio/libremente/inicio-anonimo.png",
-    coverAlt: "Aplicación LibreMente con ruta diaria de aprendizaje y hábito lector",
+    cover: "/portfolio/libremente/libremente-plataforma-premium.png",
+    coverAlt: "Plataforma web y aplicación móvil LibreMente para lectura, comprensión y progreso de aprendizaje",
     theme: "green",
-    platforms: ["iOS", "Android", "App móvil", "Progreso", "Accesibilidad"],
+    platforms: ["Plataforma web", "App móvil", "Aprendizaje", "Progreso", "Lectura accesible"],
     capabilities: ["Ruta de aprendizaje", "Biblioteca y lectura", "Comprensión lectora", "Gramática y ortografía", "Vocabulario", "Metas, niveles y rachas"],
     gallery: [
+      { src: "/portfolio/libremente/libremente-plataforma-premium.png", alt: "Plataforma web y app móvil LibreMente con biblioteca, actividades y progreso", label: "Plataforma de aprendizaje" },
       { src: "/portfolio/libremente/inicio-anonimo.png", alt: "Inicio de LibreMente con ruta de aprendizaje por unidades", label: "Ruta diaria" },
       { src: "/portfolio/libremente/biblioteca.png", alt: "Biblioteca de LibreMente con libros y avance de lectura", label: "Biblioteca personal" },
       { src: "/portfolio/libremente/progreso.png", alt: "Panel móvil de progreso, puntos, racha y habilidades", label: "Progreso y hábitos" },
@@ -217,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
     cover: "/portfolio/planifica40/extraccion-anonima.png",
     coverAlt: "Aplicación Planifica40 con extracción de datos y escenarios de pensión anonimizados",
     theme: "navy",
-    platforms: ["Windows", "Escritorio", "Lectura de PDF", "Reportes PDF", "Excel"],
+    platforms: ["Windows", "Cálculos de pensión", "Reportes para clientes", "Excel"],
     capabilities: ["Extracción de estados de cuenta", "Cálculo de semanas y salarios", "Comparación de escenarios", "Proyecciones personalizadas", "Reportes PDF para clientes", "Exportación a Excel"],
     gallery: [
       { src: "/portfolio/planifica40/acceso-demo.png", alt: "Pantalla de acceso de Planifica40 con usuario demostrativo", label: "Acceso seguro" },
